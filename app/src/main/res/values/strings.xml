@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LearnSquare1</string>
+
+
+    <string name="item_home_txt">首页</string>
+    <string name="item_subject_txt">体系</string>
+    <string name="item_discovery_txt">发现</string>
+    <string name="item_navi_txt">导航</string>
+    <string name="item_user_txt">我的</string>
+</resources>

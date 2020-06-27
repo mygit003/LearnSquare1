@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/item_home"
+        android:checked="true"
+        android:title="@string/item_home_txt"
+        android:icon="@drawable/ic_home_black_24dp"/>
+
+
+    <item
+        android:id="@+id/item_subject"
+        android:title="@string/item_subject_txt"
+        android:icon="@drawable/ic_subject_black_24dp"/>
+
+    <item
+        android:id="@+id/item_discovery"
+        android:title="@string/item_discovery_txt"
+        android:icon="@drawable/ic_explore_black_24dp"/>
+
+
+    <item
+        android:id="@+id/item_navi"
+        android:title="@string/item_navi_txt"
+        android:icon="@drawable/ic_navigation_black_24dp" />
+
+    <item
+        android:id="@+id/item_user"
+        android:title="@string/item_user_txt"
+        android:icon="@drawable/ic_person_black_24dp"/>
+
+</menu>
