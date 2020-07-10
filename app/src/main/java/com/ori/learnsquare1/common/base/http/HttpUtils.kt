@@ -4,7 +4,8 @@ import android.util.Log
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
-import com.ori.learnsquare1.App
+import com.ori.learnsquare1.business.App
+import com.ori.learnsquare1.business.util.ApiService
 import com.ori.learnsquare1.common.util.Constant
 import okhttp3.Cache
 import okhttp3.OkHttpClient
@@ -26,6 +27,10 @@ object HttpUtils {
 
     private var retrofit: Retrofit
 
+    private var cookieJar: PersistentCookieJar
+
+    private var apiService: ApiService
+
     init {
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -36,7 +41,7 @@ object HttpUtils {
         val cache = Cache(cacheFile, 1024 * 1024 * 100)
 
         //cookie
-        val cookieJar = PersistentCookieJar(SetCookieCache(),
+        cookieJar = PersistentCookieJar(SetCookieCache(),
             SharedPrefsCookiePersistor(App.getApp()))
 
         val client = OkHttpClient.Builder()
@@ -54,11 +59,23 @@ object HttpUtils {
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
+
+        apiService = retrofit.create(ApiService::class.java)
     }
 
 
     fun getRetrofitInstance(): Retrofit {
         Log.d("HttpUtils", retrofit.toString())
         return retrofit
+    }
+
+
+    fun getApiService() = apiService
+
+
+    fun clearCookie() {
+        if (null != cookieJar) {
+            cookieJar.clear()
+        }
     }
 }

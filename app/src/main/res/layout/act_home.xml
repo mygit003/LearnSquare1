@@ -13,7 +13,7 @@
         android:layout_weight="1" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnv_bottom"
+        android:id="@+id/bnv_menu"
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_navi_bar_height"
         android:background="@android:color/white"

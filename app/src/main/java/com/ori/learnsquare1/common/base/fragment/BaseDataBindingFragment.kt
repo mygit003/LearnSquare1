@@ -16,16 +16,10 @@ abstract class BaseDataBindingFragment<DB: ViewDataBinding> : BaseFragment() {
 
     private lateinit var dataBinding: DB
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        if (null == mView) {
-            dataBinding = DataBindingUtil.inflate(inflater, setRootView(), container, false)
-            dataBinding.lifecycleOwner = this
-            mView = dataBinding.root
-        }
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        dataBinding = DataBindingUtil.inflate(inflater, setRootView(), container, false)
+        dataBinding.lifecycleOwner = this
+        mView = dataBinding.root
         return mView
     }
 

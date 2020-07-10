@@ -12,7 +12,7 @@ import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
  */
 abstract class BaseVMFragment<VM : BaseViewModel> : BaseFragment() {
 
-    private lateinit var viewModel: VM
+    protected lateinit var viewModel: VM
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

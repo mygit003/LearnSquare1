@@ -1,11 +1,10 @@
 package com.ori.learnsquare1.common.base.viewmodel
 
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonParseException
-import com.ori.learnsquare1.App
-import com.ori.learnsquare1.ext.showToast
+import com.ori.learnsquare1.business.App
+import com.ori.learnsquare1.common.ext.showToast
 import kotlinx.coroutines.*
 import org.json.JSONException
 import retrofit2.HttpException
@@ -25,7 +24,7 @@ typealias Error = suspend (e: Exception) -> Unit
 typealias Cancel = suspend (e: Exception) -> Unit
 
 
-class BaseViewModel : ViewModel() {
+open class BaseViewModel : ViewModel() {
 
 
     private val TAG = this.javaClass.simpleName;

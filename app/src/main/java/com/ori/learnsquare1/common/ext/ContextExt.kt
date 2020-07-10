@@ -1,4 +1,4 @@
-package com.ori.learnsquare1.ext
+package com.ori.learnsquare1.common.ext
 
 import android.content.ClipData
 import android.content.ClipboardManager

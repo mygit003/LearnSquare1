@@ -15,7 +15,7 @@ import com.ori.learnsquare1.common.util.StatusUtils
  */
 abstract class BaseActivity : AppCompatActivity() {
 
-    private val TAG = this.javaClass.simpleName
+    protected val TAG = this.javaClass.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

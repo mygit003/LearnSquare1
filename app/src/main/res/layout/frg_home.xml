@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
 
-</LinearLayout>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <cn.bingoogolapple.bgabanner.BGABanner
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                app:banner_indicatorGravity="center_horizontal"
+                app:banner_pageChangeDuration="1200"
+                app:banner_pointAutoPlayAble="true"
+                app:banner_pointContainerBackground="@android:color/transparent"
+                app:banner_pointContainerLeftRightPadding="20dp"
+                app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"
+                app:banner_pointTopBottomMargin="40dp"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed" />
+
+
+            <net.lucode.hackware.magicindicator.MagicIndicator
+                android:id="@+id/mi_indicator"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_gravity="center_vertical" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</FrameLayout>

@@ -1,4 +1,4 @@
-package com.ori.learnsquare1
+package com.ori.learnsquare1.business
 
 import android.app.Application
 

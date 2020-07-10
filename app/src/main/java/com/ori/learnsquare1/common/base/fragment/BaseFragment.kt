@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
  */
 abstract class BaseFragment : Fragment() {
 
-    private val TAG = this.javaClass.simpleName
+    protected val TAG = this.javaClass.simpleName
 
 
     protected var isLoaded = false;
@@ -22,9 +22,7 @@ abstract class BaseFragment : Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (null == mView) {
-            mView = inflater.inflate(setRootView(), null)
-        }
+        mView = inflater.inflate(setRootView(), null)
         return mView
     }
 

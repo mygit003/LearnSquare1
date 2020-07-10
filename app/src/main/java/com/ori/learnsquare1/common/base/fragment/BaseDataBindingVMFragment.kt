@@ -21,11 +21,9 @@ abstract class BaseDataBindingVMFragment<DB : ViewDataBinding, VM : BaseViewMode
     private lateinit var viewModel: VM
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (null == mView) {
-            dataBinding = DataBindingUtil.inflate(inflater, setRootView(), container, false)
-            dataBinding.lifecycleOwner = this
-            mView = dataBinding.root
-        }
+        dataBinding = DataBindingUtil.inflate(inflater, setRootView(), container, false)
+        dataBinding.lifecycleOwner = this
+        mView = dataBinding.root
         return mView
     }
 
