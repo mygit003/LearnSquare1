@@ -1,5 +1,7 @@
 package com.ori.learnsquare1.common.base.viewmodel
 
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonParseException
@@ -24,10 +26,12 @@ typealias Error = suspend (e: Exception) -> Unit
 typealias Cancel = suspend (e: Exception) -> Unit
 
 
-open class BaseViewModel : ViewModel() {
+abstract class BaseViewModel : ViewModel(), ViewModelLifecycle {
 
 
     private val TAG = this.javaClass.simpleName;
+
+    private lateinit var lifcycleOwner: LifecycleOwner
 
 
     protected fun launch(block: Block<Unit>, error: Error? = null, cancel: Cancel? = null): Job {
@@ -106,6 +110,34 @@ open class BaseViewModel : ViewModel() {
                 e.message?.let { App.getApp().showToast("message: ${it}") }
             }
         }
+    }
+
+    override fun onAny(owner: LifecycleOwner, event: Lifecycle.Event) {
+        this.lifcycleOwner = owner
+    }
+
+    override fun onCreate() {
+
+    }
+
+    override fun onStart() {
+
+    }
+
+    override fun onResume() {
+
+    }
+
+    override fun onPause() {
+
+    }
+
+    override fun onStop() {
+
+    }
+
+    override fun onDestroy() {
+
     }
 
 

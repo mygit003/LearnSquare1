@@ -5,14 +5,15 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/abl_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
 
             <cn.bingoogolapple.bgabanner.BGABanner
                 android:id="@+id/banner"
@@ -27,6 +28,39 @@
                 app:banner_pointTopBottomMargin="40dp"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed" />
 
+            <LinearLayout
+                android:id="@+id/ll_search"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="@dimen/item_pdding"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="首页"
+                    android:textAllCaps="false"
+                    android:textColor="@color/theme"
+                    android:textSize="@dimen/font_size_title" />
+
+
+                <ImageView
+                    android:id="@+id/iv_home_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/item_padding_right"
+                    android:background="@drawable/circle_bg"
+                    android:padding="8dp"
+                    android:src="@mipmap/home_search"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
 
             <net.lucode.hackware.magicindicator.MagicIndicator
                 android:id="@+id/mi_indicator"
@@ -45,6 +79,5 @@
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 
 </FrameLayout>

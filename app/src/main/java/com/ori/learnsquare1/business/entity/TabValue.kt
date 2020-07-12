@@ -25,4 +25,5 @@ class TabValue {
     var userControlSetTop = false
     var visible = 0
     var children: List<*>? = null
+    var checked: Boolean = false
 }

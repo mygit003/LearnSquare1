@@ -17,8 +17,8 @@ import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
 abstract class BaseDataBindingVMFragment<DB : ViewDataBinding, VM : BaseViewModel> : BaseFragment() {
 
 
-    private lateinit var dataBinding: DB
-    private lateinit var viewModel: VM
+    protected lateinit var dataBinding: DB
+    protected lateinit var viewModel: VM
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dataBinding = DataBindingUtil.inflate(inflater, setRootView(), container, false)
@@ -31,6 +31,7 @@ abstract class BaseDataBindingVMFragment<DB : ViewDataBinding, VM : BaseViewMode
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(setViewModelClass())
+        lifecycle.addObserver(viewModel)
         initView()
     }
 
@@ -58,6 +59,7 @@ abstract class BaseDataBindingVMFragment<DB : ViewDataBinding, VM : BaseViewMode
 
     override fun onDestroy() {
         super.onDestroy()
+        lifecycle.removeObserver(viewModel)
         if (null != dataBinding) {
             dataBinding.unbind()
         }

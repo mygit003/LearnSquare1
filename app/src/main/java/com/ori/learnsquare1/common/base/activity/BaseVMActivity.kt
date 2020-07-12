@@ -17,6 +17,13 @@ abstract class BaseVMActivity<VM : BaseViewModel> : BaseActivity() {
     override fun setActivityContent() {
         super.setActivityContent()
         mViewModel = ViewModelProvider(this).get(setViewModelClass())
+        lifecycle.addObserver(mViewModel)
+    }
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        lifecycle.removeObserver(mViewModel)
     }
 
 

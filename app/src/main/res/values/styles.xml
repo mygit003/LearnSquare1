@@ -1,7 +1,7 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -29,6 +29,22 @@
         <item name="android:activityOpenExitAnimation">@anim/out_to_left</item>
         <!--<item name="android:activityCloseEnterAnimation">@anim/in_from_right</item>-->
         <item name="android:activityCloseExitAnimation">@anim/out_to_right</item>
+    </style>
+
+
+    <style name="text_title">
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+
+    <style name="text_tip">
+        <item name="android:textColor">@color/normal_color</item>
+        <item name="android:textSize">@dimen/font_size_smallest</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
 </resources>

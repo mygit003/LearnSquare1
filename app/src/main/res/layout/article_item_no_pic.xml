@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_bg"
+    android:elevation="1.0dp"
+    android:layout_marginBottom="8dp"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/item_pdding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_top_flag"
+                style="@style/text_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="置顶"
+                android:textColor="@color/theme"
+                android:layout_marginRight="@dimen/item_tip_margin"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_author"
+                style="@style/text_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="jack" />
+
+            <TextView
+                android:id="@+id/tv_publish_time"
+                style="@style/text_tip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/item_tip_margin"
+                android:gravity="right"
+                android:text="2020-05-09 12:00:12" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/text_title"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_margin"
+            android:maxLines="3"
+            android:text="安卓介绍开发者大会将于半小时后开始，请先去占位请先去占位请" />
+
+        <TextView
+            android:id="@+id/tv_article_tip"
+            style="@style/text_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_margin"
+            android:text="android studio" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_collect"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:padding="6dp"
+                android:src="@mipmap/ic_uncollect" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

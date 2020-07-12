@@ -18,6 +18,7 @@ abstract class BaseVMFragment<VM : BaseViewModel> : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(this).get(setViewModelClass())
+        lifecycle.addObserver(viewModel)
         initView()
     }
 
@@ -39,6 +40,11 @@ abstract class BaseVMFragment<VM : BaseViewModel> : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         isLoaded = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        lifecycle.removeObserver(viewModel)
     }
 
 

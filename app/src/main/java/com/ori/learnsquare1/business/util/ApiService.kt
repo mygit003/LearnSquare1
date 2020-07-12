@@ -12,7 +12,9 @@ import retrofit2.http.*
 interface ApiService {
 
 
+    /*************************************首页 start*******************************************/
     /**
+     * 热门模块
      * 获取文章列表
      * 参数说明:
      * page：页码，拼接在连接中，从0开始。
@@ -22,66 +24,56 @@ interface ApiService {
 
 
     /**
+     * 热门模块
      * 获取首页置顶文章数据
      */
     @GET("/article/top/json")
     suspend fun getTopArticleList(): BaseResponse<MutableList<ArticleValue.DatasBean>>
 
     /**
+     * 首页
      * 轮播图
      */
     @GET("/banner/json")
     suspend fun getBannerList(): BaseResponse<MutableList<BannerValue>>
 
 
-
-
     /**
-     * 体系
+     * 最新
+     * 文章列表
      */
-    @GET("/tree/json")
-    fun getSystemList() : BaseResponse<MutableList<SystemValue>>
-
-
+    @GET("/article/listproject/{page}/json")
+    suspend fun getLastestList(@Path("page") page: Int): BaseResponse<ArticleValue>
 
     /**
-     * 导航
+     * 广场
+     * 文章列表
      */
-    @GET("/navi/json")
-    fun getNavigation() : BaseResponse<MutableList<NavigationValue>>
-
-
-    /**
-     * 获取项目tab
-     * 参数说明:
-     * cid:分类的id，上述二级目录的id
-     * pageNum:页码,拼接在链接上，从0开始。
-     */
-    @GET("/article/list/{pageNum}/json")
-    fun getSystemCateArticle(@Path("pageNum") pageNum:Int, @Query("cid") cid:Int)
-            : BaseResponse<ArticleValue>
-
+    @GET("/user_article/list/{page}/json")
+    suspend fun getUserArticleList(@Path("page") page: Int): BaseResponse<ArticleValue>
 
 
 
     /**
-     * 获取project tab
+     * 项目
+     * tab
      */
     @GET("/project/tree/json")
-    fun getProjectTabList(): BaseResponse<MutableList<TabValue>>
+    suspend fun getProjectTabList(): BaseResponse<MutableList<TabValue>>
 
+
+    /**
+     * 项目
+     * 文章列表
+     */
+    @GET("/project/list/{pageNum}/json")
+    suspend fun getProjectList(@Path("pageNum") pageNum: Int, @Query("cid") cid: Int) : BaseResponse<ArticleValue>
 
     /**
      * 获取公众号 tab
      */
     @GET("/wxarticle/chapters/json")
-    fun getAccountsTabList(): BaseResponse<MutableList<TabValue>>
-
-    /**
-     * 获取Project文章列表
-     */
-    @GET("/project/list/{pageNum}/json")
-    fun getProjectList(@Path("pageNum") pageNum: Int, @Query("cid") cid: Int) : BaseResponse<ArticleValue>
+    suspend fun getAccountsTabList(): BaseResponse<MutableList<TabValue>>
 
 
     /**
@@ -91,7 +83,52 @@ interface ApiService {
      * pageNum:公众号页码,拼接在url 中，eg:1
      */
     @GET("/wxarticle/list/{id}/{pageNum}/json")
-    fun getAccountList(@Path("id") cid: Int, @Path("pageNum") pageNum: Int): BaseResponse<ArticleValue>
+    suspend fun getAccountList(@Path("id") cid: Int, @Path("pageNum") pageNum: Int): BaseResponse<ArticleValue>
+
+
+
+
+
+
+
+    /*************************************首页 start*******************************************/
+
+
+
+    /**
+     * 体系tab列表
+     */
+    @GET("/tree/json")
+    suspend fun getSystemTabList() : BaseResponse<MutableList<SystemValue>>
+
+
+    /**
+     * 体系tab下的文章
+     * 参数说明:
+     * cid:分类的id，上述二级目录的id
+     * pageNum:页码,拼接在链接上，从0开始。
+     */
+    @GET("/article/list/{pageNum}/json")
+    suspend fun getSystemCateArticle(@Path("pageNum") pageNum:Int, @Query("cid") cid:Int)
+            : BaseResponse<ArticleValue>
+
+
+
+
+
+    /**
+     * 导航
+     */
+    @GET("/navi/json")
+    suspend fun getNavigationTabList() : BaseResponse<MutableList<NavigationValue>>
+
+
+
+
+
+
+
+
 
 
 

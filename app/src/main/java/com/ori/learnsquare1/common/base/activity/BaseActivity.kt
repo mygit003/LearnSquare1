@@ -21,7 +21,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setActivityContent()
         setStatusColor()
-        setSystemInvadeBlack()
+        setSystemInvadeBlack(false)
         ActivityManage.getInstance().pushActivity(this)
         init()
     }
@@ -60,15 +60,16 @@ abstract class BaseActivity : AppCompatActivity() {
      * 设置状态栏背景颜色
      */
     protected open fun setStatusColor() {
-        StatusUtils.setUseStatusBarColor(this, ColorUtils.parseColor("#00ffffff"))
+        //#00000000 #00ffffff
+        StatusUtils.setUseStatusBarColor(this, ColorUtils.parseColor("#FFFFFFFF"))
     }
 
     /**
      * 沉浸式状态
      */
-    protected open fun setSystemInvadeBlack() {
+    protected open fun setSystemInvadeBlack(isImmersive: Boolean) {
         //第二个参数是是否沉浸,第三个参数是状态栏字体是否为黑色。
-        StatusUtils.setSystemStatus(this, true, true)
+        StatusUtils.setSystemStatus(this, isImmersive, true)
     }
 
     protected fun showToast(tip: String) {

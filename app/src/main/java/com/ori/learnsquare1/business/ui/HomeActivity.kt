@@ -1,9 +1,13 @@
 package com.ori.learnsquare1.business.ui
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.view.MenuItem
+import android.view.ViewPropertyAnimator
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Lifecycle
+import com.google.android.material.animation.AnimationUtils
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.common.base.activity.BaseActivity
 import com.ori.learnsquare1.common.util.ActivityManage
@@ -18,6 +22,8 @@ class HomeActivity : BaseActivity() {
 
     private var previousPos: Int = 0
     private var fragments: MutableList<Fragment> = mutableListOf()
+    private var bottomNavigationViewAnimtor: ViewPropertyAnimator? = null
+    private var currentBottomNavagtionState = true
 
     override fun setRootView(): Int {
         return R.layout.act_home
@@ -90,5 +96,28 @@ class HomeActivity : BaseActivity() {
             ActivityManage.getInstance().appExit()
             super.onBackPressed()
         }
+    }
+
+
+    fun animateBottomNavigationView(show: Boolean) {
+        if (currentBottomNavagtionState == show) {
+            return
+        }
+        if (bottomNavigationViewAnimtor != null) {
+            bottomNavigationViewAnimtor?.cancel()
+            bnv_menu.clearAnimation()
+        }
+        currentBottomNavagtionState = show
+        val targetY = if (show) 0F else bnv_menu.measuredHeight.toFloat()
+        //val duration = if (show) 225L else 175L
+        bottomNavigationViewAnimtor = bnv_menu.animate()
+            .translationY(targetY)
+            .setDuration(200L)
+            .setInterpolator(AnimationUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR)
+            .setListener(object : AnimatorListenerAdapter() {
+                override fun onAnimationEnd(animation: Animator?) {
+                    bottomNavigationViewAnimtor = null
+                }
+            })
     }
 }

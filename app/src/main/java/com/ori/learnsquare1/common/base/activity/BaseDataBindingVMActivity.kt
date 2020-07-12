@@ -20,12 +20,14 @@ abstract class BaseDataBindingVMActivity<DB : ViewDataBinding, VM : BaseViewMode
         viewDataBinding = DataBindingUtil.setContentView(this, setRootView())
         viewDataBinding.lifecycleOwner = this
         mViewModel = ViewModelProvider(this).get(setViewModelClass())
+        lifecycle.addObserver(mViewModel)
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
         viewDataBinding.unbind()
+        lifecycle.removeObserver(mViewModel)
     }
 
 
