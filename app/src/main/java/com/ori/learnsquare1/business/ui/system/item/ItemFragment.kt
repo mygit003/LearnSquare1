@@ -47,6 +47,7 @@ class ItemFragment : BaseVMFragment<ItemViewModel>() {
 
         viewModel.run {
             articleList.observe(viewLifecycleOwner, Observer {
+                ltv_loading.dismiss()
                 refreshComplete()
                 if (pageIndex == 0) {
                     if (!articles.isEmpty()) {
@@ -78,6 +79,7 @@ class ItemFragment : BaseVMFragment<ItemViewModel>() {
     }
 
     override fun initData() {
+        ltv_loading.loading()
         Log.w(TAG, "hasNextPage:${hasNextPage}")
         if (!tabList.isEmpty()) {
             tabList.clear()

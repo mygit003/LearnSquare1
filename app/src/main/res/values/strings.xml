@@ -7,4 +7,18 @@
     <string name="item_discovery_txt">发现</string>
     <string name="item_navi_txt">导航</string>
     <string name="item_user_txt">我的</string>
+
+    <string name="item_user_integration">我的积分</string>
+    <string name="item_user_rank">排名</string>
+
+    <string name="level_text">等级：</string>
+    <string name="rank_text">排名：</string>
+
+    <string name="registe_txt">注册</string>
+    <string name="go_registe_txt">去注册</string>
+    <string name="login_txt">登录</string>
+
+    <string name="uname_txt">账户</string>
+    <string name="pwd_txt">密码</string>
+    <string name="repwd_txt">确认密码</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.ori.learnsquare1.common.base.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,4 +29,18 @@ abstract class BaseFragment : Fragment() {
 
 
     protected abstract fun setRootView(): Int
+
+
+    protected fun toActivity(clazz: Class<*>) {
+        startActivity(Intent(activity, clazz))
+    }
+
+
+    protected fun toActivity(clazz: Class<*>, bundle: Bundle) {
+        var intent = Intent(activity, clazz).apply {
+            putExtras(bundle)
+        }
+        startActivity(intent)
+
+    }
 }

@@ -22,6 +22,7 @@ class UserValue : Serializable {
      * token :
      * type : 0
      * username : 18616720137
+     * {"data":{"admin":false,"chapterTops":[],"coinCount":0,"collectIds":[],"email":"","icon":"","id":64502,"nickname":"jkboy","password":"","publicName":"jkboy","token":"","type":0,"username":"jkboy"},"errorCode":0,"errorMsg":""}
      */
 
 
@@ -34,6 +35,6 @@ class UserValue : Serializable {
     var publicName: String? = null
     var token: String? = null
     var type: Int = 0
-    var userName: String? = null
+    var username: String? = null
 
 }

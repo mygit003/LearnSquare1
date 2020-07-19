@@ -32,8 +32,8 @@
                 android:id="@+id/ll_search"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:paddingHorizontal="@dimen/item_pdding"
                 android:visibility="gone">
 
@@ -79,5 +79,12 @@
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.ori.learnsquare1.common.ui.LoadingTipView
+        android:id="@+id/ltv_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="gone" />
 
 </FrameLayout>

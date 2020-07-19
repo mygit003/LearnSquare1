@@ -41,6 +41,35 @@
             android:screenOrientation="fullSensor"
             android:theme="@style/ActivityTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
+        <activity
+            android:name="com.ori.learnsquare1.business.ui.WebActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/ActivityTheme"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
+        <activity
+            android:name="com.ori.learnsquare1.business.ui.login.LoginActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/ActivityTheme"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
+
+        <activity
+            android:name="com.ori.learnsquare1.business.ui.registe.RegisteActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/ActivityTheme"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+
+        <activity
+            android:name="com.ori.learnsquare1.business.ui.integration.IntegrationActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/ActivityTheme"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
     </application>
 
 </manifest>

@@ -13,21 +13,21 @@ import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
 abstract class BaseDataBindingVMActivity<DB : ViewDataBinding, VM : BaseViewModel> : BaseActivity() {
 
     protected lateinit var viewDataBinding: DB
-    protected lateinit var mViewModel: VM
+    protected lateinit var viewModel: VM
 
 
     override fun setActivityContent() {
         viewDataBinding = DataBindingUtil.setContentView(this, setRootView())
         viewDataBinding.lifecycleOwner = this
-        mViewModel = ViewModelProvider(this).get(setViewModelClass())
-        lifecycle.addObserver(mViewModel)
+        viewModel = ViewModelProvider(this).get(setViewModelClass())
+        lifecycle.addObserver(viewModel)
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
         viewDataBinding.unbind()
-        lifecycle.removeObserver(mViewModel)
+        lifecycle.removeObserver(viewModel)
     }
 
 

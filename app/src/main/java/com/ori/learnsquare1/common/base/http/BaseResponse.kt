@@ -10,4 +10,12 @@ class BaseResponse<T> {
     var data: T? = null
     var errorCode: Int = 0
     var errorMsg: String = ""
+
+    fun getResult() : T? {
+        if (errorCode == 0) {
+            return data
+        }else {
+            throw ApiException(errorCode, errorMsg)
+        }
+    }
 }

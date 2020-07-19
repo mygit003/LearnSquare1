@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonParseException
 import com.ori.learnsquare1.business.App
+import com.ori.learnsquare1.common.base.http.ApiException
+import com.ori.learnsquare1.common.base.http.BaseResponse
 import com.ori.learnsquare1.common.ext.showToast
 import kotlinx.coroutines.*
 import org.json.JSONException
@@ -77,7 +79,21 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle {
                     else -> {
                         // 其他错误
                         e?.let {
-                            App.getApp().showToast("code: ${it.code()}, message: ${it.message()}")
+                            //App.getApp().showToast("code: ${it.code()}, message: ${it.message()}")
+                        }
+                    }
+                }
+            }
+            is ApiException -> {
+                when (e.code) {
+                    -1001 -> {
+                        // 登录失效
+
+                    }
+                    else -> {
+                        // 其他错误
+                        e?.let {
+                            //App.getApp().showToast("code: ${it.code}, message: ${it.message}")
                         }
                     }
                 }

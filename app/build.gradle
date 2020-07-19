@@ -107,12 +107,15 @@ dependencies {
 
 
     //flowlayout 流式布局控件
-    implementation 'com.hyman:flowlayout-lib:1.1.2'
+    //implementation 'com.hyman:flowlayout-lib:1.1.2'
     //agentweb Android WebView
-    implementation 'com.just.agentweb:agentweb:4.1.2'
+    //implementation 'com.just.agentweb:agentweb:4.1.2'
 
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //fastjson
+    implementation 'com.alibaba:fastjson:1.1.58.android'
 
 
 }

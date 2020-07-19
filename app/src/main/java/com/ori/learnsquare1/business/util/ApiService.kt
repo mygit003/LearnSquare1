@@ -1,6 +1,9 @@
 package com.ori.learnsquare1.business.util
 
 import com.ori.learnsquare.business.entity.*
+import com.ori.learnsquare1.business.entity.HotWordValue
+import com.ori.learnsquare1.business.entity.OfterSearchValue
+import com.ori.learnsquare1.business.entity.PageValue
 import com.ori.learnsquare1.common.base.http.BaseResponse
 import retrofit2.http.*
 
@@ -123,6 +126,17 @@ interface ApiService {
     suspend fun getNavigationTabList() : BaseResponse<MutableList<NavigationValue>>
 
 
+    /**
+     * 发现 热搜
+     */
+    @GET("hotkey/json")
+    suspend fun getHotWords(): BaseResponse<MutableList<HotWordValue>>
+
+    /**
+     * 发现 常用搜索
+     */
+    @GET("friend/json")
+    suspend fun getFrequentlyWebsites(): BaseResponse<MutableList<OfterSearchValue>>
 
 
 
@@ -143,7 +157,7 @@ interface ApiService {
      */
     @FormUrlEncoded
     @POST("/user/login")
-    fun login(
+    suspend fun login(
         @Field("username") username: String,
         @Field("password") pwd: String
     ): BaseResponse<UserValue>
@@ -153,14 +167,14 @@ interface ApiService {
      * 登出
      */
     @GET("/user/logout/json")
-    fun logout(): BaseResponse<Any>
+    suspend fun logout(): BaseResponse<Any>
 
 
     /**
      * 注册
      */
     @POST("/user/register")
-    fun register(
+    suspend fun register(
         @Query("username") username: String,
         @Query("password") password: String,
         @Query("repassword") repassword: String
@@ -171,38 +185,38 @@ interface ApiService {
      * 获取个人积分
      */
     @GET("/lg/coin/userinfo/json")
-    fun getAccountData(): BaseResponse<UserAccountValue>
+    suspend fun getAccountData(): BaseResponse<UserAccountValue>
 
 
     /**
      * 排名
      */
     @GET("/coin/rank/{pageNum}/json")
-    fun getMyRank(@Path("pageNum") pageNum: Int): BaseResponse<RankValue>
+    suspend fun getMyRank(@Path("pageNum") pageNum: Int): BaseResponse<RankValue>
 
     /**
      * 积分记录
      */
     @GET("/lg/coin/list/{pageNum}/json")
-    fun getIntegralRecord(@Path("pageNum") pageNum: Int): BaseResponse<IntegrationRecordValue>
+    suspend fun getIntegralRecord(@Path("pageNum") pageNum: Int): BaseResponse<PageValue<IntegrationRecordValue>>
 
     /**
      * 我分享的文章
      */
     @GET("/user/lg/private_articles/{pageNum}/json")
-    fun getMyArticle(@Path("pageNum") pageNum: Int): BaseResponse<MyArticleValue>
+    suspend fun getMyArticle(@Path("pageNum") pageNum: Int): BaseResponse<MyArticleValue>
 
     /**
      * 我分享的文章
      */
     @POST("/lg/user_article/delete/{id}/json")
-    fun deleteMyArticle(@Path("id") id: Int): BaseResponse<Any>
+    suspend fun deleteMyArticle(@Path("id") id: Int): BaseResponse<Any>
 
     /**
      * 分享文章
      */
     @POST("/lg/user_article/add/json")
-    fun shareArticle(
+    suspend fun shareArticle(
         @Query("title") title: String,
         @Query("link") link: String
     ): BaseResponse<Any>
@@ -212,18 +226,18 @@ interface ApiService {
      * 获取收藏文章数据
      */
     @GET("/lg/collect/list/{page}/json")
-    fun getMyCollectData(@Path("page") pageNo: Int): BaseResponse<CollectValue>
+    suspend fun getMyCollectData(@Path("page") pageNo: Int): BaseResponse<CollectValue>
 
 
     /**
      * 收藏
      */
     @POST("/lg/collect/{id}/json")
-    fun collect(@Path("id")id:Int):BaseResponse<Any>
+    suspend fun collect(@Path("id")id:Int):BaseResponse<Any>
 
     /**
      * 取消收藏
      */
     @POST("/lg/uncollect_originId/{id}/json")
-    fun unCollect(@Path("id") id: Int): BaseResponse<Any>
+    suspend fun unCollect(@Path("id") id: Int): BaseResponse<Any>
 }

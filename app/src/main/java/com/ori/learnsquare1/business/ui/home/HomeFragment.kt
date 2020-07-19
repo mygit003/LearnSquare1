@@ -72,6 +72,7 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
 
         //监听轮播图片数据变化更新UI
         viewModel.bannerList.observe(viewLifecycleOwner, Observer {
+            ltv_loading.dismiss()
             if (it.isNotEmpty()) {
                 bannerList.addAll(it)
             }
@@ -84,6 +85,7 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
     }
 
     override fun initData() {
+        ltv_loading.loading()
         //初始化加载轮播图数据
         viewModel.getBannerData()
     }

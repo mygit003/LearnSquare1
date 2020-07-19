@@ -2,11 +2,11 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#FFFFFF</color>
-    <color name="colorAccent">#333333</color>
+    <color name="colorAccent">#ff000000</color>
 
 
     <color name="text_black">#333333</color>
-    <color name="text_grey">#999999</color>
+    <color name="text_grey">#666666</color>
 
     <!--    #F60B0B-->
     <color name="theme">#2B2B2B</color>

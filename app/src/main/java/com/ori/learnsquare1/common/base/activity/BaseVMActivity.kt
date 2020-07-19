@@ -11,19 +11,19 @@ import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
 abstract class BaseVMActivity<VM : BaseViewModel> : BaseActivity() {
 
 
-    protected lateinit var mViewModel: VM
+    protected lateinit var viewModel: VM
 
 
     override fun setActivityContent() {
         super.setActivityContent()
-        mViewModel = ViewModelProvider(this).get(setViewModelClass())
-        lifecycle.addObserver(mViewModel)
+        viewModel = ViewModelProvider(this).get(setViewModelClass())
+        lifecycle.addObserver(viewModel)
     }
 
 
     override fun onDestroy() {
         super.onDestroy()
-        lifecycle.removeObserver(mViewModel)
+        lifecycle.removeObserver(viewModel)
     }
 
 

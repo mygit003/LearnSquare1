@@ -64,7 +64,7 @@ object HttpUtils {
     }
 
 
-    fun getRetrofitInstance(): Retrofit {
+   private fun getRetrofitInstance(): Retrofit {
         Log.d("HttpUtils", retrofit.toString())
         return retrofit
     }

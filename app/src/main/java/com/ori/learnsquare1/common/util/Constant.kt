@@ -19,4 +19,37 @@ object Constant {
      * 多布局中不带图片
      */
     const val ITEM_ARTICLE_NO_PIC = 20
+
+
+    object WebParam {
+        val PARAM_TITLE = "title"
+        val PARAM_URL = "url"
+        val PARAM_ITEM = "item"
+    }
+
+
+    object WebUrl {
+        /**
+         * wanandroid
+         */
+        val WEB_URL = "https://www.wanandroid.com"
+
+        /**
+         * app github
+         */
+        val APP_GITHUB = "https://github.com/zskingking/WanAndroid-ZS"
+
+
+        /**
+         * wan android 官网
+         */
+        const val INTEGRAL_RULE = "https://www.wanandroid.com/blog/show/2653"
+    }
+
+
+    object SpKey {
+        val SP_USER_INFO = "USERINFO";
+        val SP_INTEGRAL_INFO = "INTEGRALINFO"
+        val SP_LOGIN_FLAG = "LOGINFLAG"
+    }
 }
