@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/bgColorPrimary"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -15,7 +15,6 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@android:color/white"
             app:layout_scrollFlags="scroll|enterAlways">
 
             <TextView
@@ -23,7 +22,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/item_subject_txt"
-                android:textColor="@color/black"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/font_size_normal" />
 
             <ImageView
@@ -44,13 +43,12 @@
             android:id="@+id/tl_layout"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:background="@android:color/white"
             app:tabGravity="center"
             android:visibility="gone"
-            app:tabIndicatorColor="@color/black"
+            app:tabIndicatorColor="@color/textColorPrimary"
             app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/black"
-            app:tabTextColor="@color/text_grey" />
+            app:tabSelectedTextColor="@color/textColorPrimary"
+            app:tabTextColor="@color/textColorSecondary" />
 
 
     </com.google.android.material.appbar.AppBarLayout>

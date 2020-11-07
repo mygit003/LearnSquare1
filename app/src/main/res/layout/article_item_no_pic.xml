@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="置顶"
-                android:textColor="@color/theme"
+                android:textColor="@color/textColorPrimary"
                 android:layout_marginRight="@dimen/item_tip_margin"
                 android:visibility="gone" />
 

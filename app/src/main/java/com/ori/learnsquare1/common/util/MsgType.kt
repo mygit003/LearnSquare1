@@ -7,7 +7,7 @@ package com.ori.learnsquare1.common.util
  */
 object MsgType {
 
-    val MSG_UPDATE_USER_INFO = 1000;
-    val MSG_UPDATE_USER_LOGOUT = 1001;
-    val MSG_UPDATE_USER_MARK_DATA = 1002;
+    val MSG_UPDATE_USER_INFO = 1000
+    val MSG_UPDATE_USER_LOGOUT = 1001
+    val MSG_UPDATE_USER_MARK_DATA = 1002
 }

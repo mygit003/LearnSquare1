@@ -192,7 +192,7 @@ interface ApiService {
      * 排名
      */
     @GET("/coin/rank/{pageNum}/json")
-    suspend fun getMyRank(@Path("pageNum") pageNum: Int): BaseResponse<RankValue>
+    suspend fun getMyRank(@Path("pageNum") pageNum: Int): BaseResponse<PageValue<RankValue>>
 
     /**
      * 积分记录

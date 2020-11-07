@@ -61,6 +61,7 @@ class ArticleValue {
          * visible : 1
          * zan : 0
          */
+        var _id: Int = 0
         var apkLink: String? = null
         var audit = 0
         var author: String? = null

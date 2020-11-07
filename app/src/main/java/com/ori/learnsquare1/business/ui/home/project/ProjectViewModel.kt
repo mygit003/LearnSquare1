@@ -17,6 +17,7 @@ class ProjectViewModel : BaseViewModel() {
 
     var tabList = MutableLiveData<MutableList<TabValue>>()
     var articleList = MutableLiveData<MutableList<ArticleValue.DatasBean>>()
+    var collectStatus = MutableLiveData<Boolean>()
 
 
     fun getItemTab() {
@@ -48,6 +49,30 @@ class ProjectViewModel : BaseViewModel() {
                 Log.e("TAG", "errorMsg:${it.message}")
             }
 
+        )
+    }
+
+    fun unCollect(aid: Int) {
+        launch(
+            block = {
+                userRepository.unCollectArticle(aid)
+                collectStatus.value = false
+            },
+            error = {
+
+            }
+        )
+    }
+
+    fun collect(aid: Int) {
+        launch(
+            block = {
+                userRepository.collectArticle(aid)
+                collectStatus.value = true
+            },
+            error = {
+
+            }
         )
     }
 }

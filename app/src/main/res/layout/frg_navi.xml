@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="@color/bgColorPrimary"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,7 +14,6 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@android:color/white"
             android:elevation="2dp">
 
             <TextView
@@ -22,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/item_navi_txt"
-                android:textColor="@color/black"
+                android:textColor="@color/textColorPrimary"
                 android:textSize="@dimen/font_size_normal" />
         </FrameLayout>
 
@@ -44,12 +43,12 @@
                 android:id="@+id/tvFloatTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/white"
+                android:background="@color/bgColorPrimary"
                 android:paddingVertical="@dimen/item_pdding"
                 android:paddingHorizontal="@dimen/item_pdding"
                 android:textSize="@dimen/font_size_small"
                 android:text=""
-                android:textColor="@color/text_grey"
+                android:textColor="@color/textColorSecondary"
                 android:visibility="gone" />
 
         </FrameLayout>
@@ -60,7 +59,6 @@
         android:id="@+id/ltv_loading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
         android:visibility="gone" />
 
 </FrameLayout>

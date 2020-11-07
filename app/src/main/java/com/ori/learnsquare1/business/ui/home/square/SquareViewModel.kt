@@ -15,6 +15,7 @@ class SquareViewModel : BaseViewModel() {
     private val mRepository by lazy { SquareRepository() }
 
     var articleList = MutableLiveData<MutableList<ArticleValue.DatasBean>>()
+    var collectStatus = MutableLiveData<Boolean>()
 
 
 
@@ -31,6 +32,30 @@ class SquareViewModel : BaseViewModel() {
                 Log.e("TAG", "errorMsg:${it.message}")
             }
 
+        )
+    }
+
+    fun unCollect(aid: Int) {
+        launch(
+            block = {
+                userRepository.unCollectArticle(aid)
+                collectStatus.value = false
+            },
+            error = {
+
+            }
+        )
+    }
+
+    fun collect(aid: Int) {
+        launch(
+            block = {
+                userRepository.collectArticle(aid)
+                collectStatus.value = true
+            },
+            error = {
+
+            }
         )
     }
 }

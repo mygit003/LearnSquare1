@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgColorPrimary"
     android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@android:color/white"
         android:elevation="2dp">
 
         <TextView
@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/item_user_txt"
-            android:textColor="@color/black"
+            android:textColor="@color/textColorPrimary"
             android:textSize="@dimen/font_size_normal" />
     </FrameLayout>
 
@@ -24,7 +24,7 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/division_line"
+        android:background="@color/bgColorThird"
         android:scrollbars="none">
 
         <LinearLayout
@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/item_pdding"
                     android:text="登录/注册"
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/font_size_smaller"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_user_img"
                     app:layout_constraintLeft_toRightOf="@+id/iv_user_img"
@@ -71,7 +71,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/item_pdding"
                     android:text=""
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/font_size_smaller"
                     android:visibility="gone"
                     app:layout_constraintLeft_toRightOf="@+id/iv_user_img"
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/item_pdding"
                     android:text=""
-                    android:textColor="@color/black"
+                    android:textColor="@color/textColorPrimary"
                     android:textSize="@dimen/font_size_smaller"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="@+id/iv_user_img"
@@ -94,7 +94,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_chevron_right_black_24dp"
-                    android:tint="@color/text_grey"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -106,7 +105,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@android:color/white"
                 android:elevation="1dp"
                 android:orientation="vertical">
 
@@ -125,11 +123,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="@dimen/item_pdding"
-                        android:drawableLeft="@drawable/ic_my_integral"
                         android:drawablePadding="8dp"
+                        android:drawableLeft="@drawable/ic_my_integral"
                         android:gravity="center_vertical"
                         android:text="我的积分"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColorPrimary"
                         android:textSize="@dimen/font_size_smaller" />
 
                 </LinearLayout>
@@ -137,7 +135,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/division_line" />
+                    android:background="@color/bgColorThird" />
 
 
                 <LinearLayout
@@ -159,7 +157,7 @@
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
                         android:text="积分排行"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColorPrimary"
                         android:textSize="@dimen/font_size_smaller" />
 
                 </LinearLayout>
@@ -171,7 +169,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@android:color/white"
                 android:elevation="1dp"
                 android:orientation="vertical">
 
@@ -194,7 +191,7 @@
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
                         android:text="我的分享"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColorPrimary"
                         android:textSize="@dimen/font_size_smaller" />
 
                 </LinearLayout>
@@ -202,7 +199,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/division_line" />
+                    android:background="@color/bgColorThird" />
 
 
                 <LinearLayout
@@ -224,7 +221,7 @@
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
                         android:text="我的收藏"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColorPrimary"
                         android:textSize="@dimen/font_size_smaller" />
 
                 </LinearLayout>
@@ -233,7 +230,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/division_line" />
+                    android:background="@color/bgColorThird" />
 
 
                 <LinearLayout
@@ -255,7 +252,7 @@
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
                         android:text="浏览历史"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColorPrimary"
                         android:textSize="@dimen/font_size_smaller" />
 
                 </LinearLayout>
@@ -267,7 +264,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:background="@android:color/white"
                 android:elevation="1dp"
                 android:orientation="vertical">
 
@@ -290,7 +286,7 @@
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
                         android:text="网站"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColorPrimary"
                         android:textSize="@dimen/font_size_smaller" />
 
                 </LinearLayout>
@@ -298,7 +294,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/division_line" />
+                    android:background="@color/bgColorThird" />
 
 
                 <LinearLayout
@@ -320,7 +316,7 @@
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
                         android:text="关于作者"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColorPrimary"
                         android:textSize="@dimen/font_size_smaller" />
 
                 </LinearLayout>
@@ -329,7 +325,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/division_line" />
+                    android:background="@color/bgColorThird" />
 
 
                 <LinearLayout
@@ -351,7 +347,7 @@
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
                         android:text="系统设置"
-                        android:textColor="@color/black"
+                        android:textColor="@color/textColorPrimary"
                         android:textSize="@dimen/font_size_smaller" />
 
                 </LinearLayout>

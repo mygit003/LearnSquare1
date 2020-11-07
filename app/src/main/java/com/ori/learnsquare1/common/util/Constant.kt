@@ -10,6 +10,8 @@ object Constant {
 
     const val BASE_URL = "https://www.wanandroid.com"
 
+    const val DB_VERSION = 1
+
 
     /**
      * 多布局中带图片
@@ -51,5 +53,6 @@ object Constant {
         val SP_USER_INFO = "USERINFO";
         val SP_INTEGRAL_INFO = "INTEGRALINFO"
         val SP_LOGIN_FLAG = "LOGINFLAG"
+        var SP_MODE_CONFIG = "MODECONFIG"
     }
 }

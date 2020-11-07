@@ -1,5 +1,6 @@
 package com.ori.learnsquare1.business.ui.registe
 
+import androidx.lifecycle.MutableLiveData
 import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
 
 /**
@@ -10,5 +11,20 @@ import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
 class RegisteViewModel : BaseViewModel() {
 
     private val mRepository by lazy { RegisteRepository() }
+
+    var registeStatus = MutableLiveData<String>()
+
+
+    fun registe(accont: String, pwd: String, repwd: String) {
+        launch(
+            block = {
+                mRepository.registe(accont, pwd, repwd)
+                registeStatus.value = "success"
+            },
+            error = {
+                registeStatus.value = "" + it.message
+            }
+        )
+    }
 
 }

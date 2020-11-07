@@ -17,6 +17,7 @@ class HotViewModel : BaseViewModel() {
     private val mRepository by lazy { HotRepository() }
 
     var articleList = MutableLiveData<MutableList<ArticleValue.DatasBean>>()
+    var collectStatus = MutableLiveData<Boolean>()
 
 
 
@@ -55,6 +56,31 @@ class HotViewModel : BaseViewModel() {
             },
             error = {
                 Log.e("TAG", "errorMsg:${it.message}")
+            }
+        )
+    }
+
+
+    fun unCollect(aid: Int) {
+        launch(
+            block = {
+                userRepository.unCollectArticle(aid)
+                collectStatus.value = false
+            },
+            error = {
+
+            }
+        )
+    }
+
+    fun collect(aid: Int) {
+        launch(
+            block = {
+                userRepository.collectArticle(aid)
+                collectStatus.value = true
+            },
+            error = {
+
             }
         )
     }

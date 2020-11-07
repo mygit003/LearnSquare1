@@ -52,6 +52,6 @@ class MyArticleValue {
         var pageCount = 0
         var size = 0
         var total = 0
-        var datas: List<ArticleValue.DatasBean>? = null
+        var datas: MutableList<ArticleValue.DatasBean>? = null
     }
 }

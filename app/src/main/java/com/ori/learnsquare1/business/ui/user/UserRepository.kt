@@ -12,4 +12,7 @@ class UserRepository {
     suspend fun getUserInfo() = HttpUtils.getApiService().getAccountData().data
 
 
+    suspend fun collectArticle(aid: Int) = HttpUtils.getApiService().collect(aid).getResult()
+
+    suspend fun unCollectArticle(aid: Int) = HttpUtils.getApiService().unCollect(aid).getResult()
 }

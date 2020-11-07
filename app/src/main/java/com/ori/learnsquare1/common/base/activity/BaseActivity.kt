@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.ori.learnsquare1.R
 import com.ori.learnsquare1.common.util.ActivityManage
 import com.ori.learnsquare1.common.util.ColorUtils
 import com.ori.learnsquare1.common.util.StatusUtils
@@ -20,9 +21,15 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setActivityContent()
-        setStatusColor()
-        setSystemInvadeBlack(false)
+//        setStatusColor()
+//        setSystemInvadeBlack(false)
         ActivityManage.getInstance().pushActivity(this)
+
+        // 因为Activity恢复后savedInstanceState不为null，
+        // 重新恢复后会自动从ViewModel中的LiveData恢复数据，
+        // 不需要重新初始化数据。
+        if (savedInstanceState == null) {
+        }
         init()
     }
 
@@ -61,7 +68,7 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     protected open fun setStatusColor() {
         //#00000000 #00ffffff
-        StatusUtils.setUseStatusBarColor(this, ColorUtils.parseColor("#FFFFFFFF"))
+        StatusUtils.setUseStatusBarColor(this, resources.getColor(R.color.colorPrimary))
     }
 
     /**

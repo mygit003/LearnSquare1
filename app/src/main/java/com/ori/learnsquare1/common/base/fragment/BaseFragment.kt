@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 
 /**
@@ -42,5 +43,10 @@ abstract class BaseFragment : Fragment() {
         }
         startActivity(intent)
 
+    }
+
+
+    protected fun showToast(tip: String) {
+        Toast.makeText(activity, "" + tip, Toast.LENGTH_SHORT).show()
     }
 }

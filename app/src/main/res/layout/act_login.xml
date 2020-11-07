@@ -3,14 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white"
+    android:background="@color/bgColorPrimary"
     android:orientation="vertical">
 
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@android:color/white"
         android:elevation="2dp">
 
         <ImageView
@@ -26,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/login_txt"
-            android:textColor="@color/black"
+            android:textColor="@color/textColorPrimary"
             android:textSize="@dimen/font_size_normal" />
 
     </FrameLayout>
@@ -45,7 +44,7 @@
             android:drawableTop="@mipmap/ic_android"
             android:text="Wandroid"
             android:textAllCaps="true"
-            android:textColor="@color/black"
+            android:textColor="@color/textColorPrimary"
             android:textSize="@dimen/font_size_normal" />
 
 
@@ -64,9 +63,9 @@
                 android:maxLines="1"
                 android:imeOptions="actionNext"
                 android:singleLine="true"
-                android:textColor="@color/text_black"
-                android:textColorHighlight="@color/text_black"
-                android:textColorHint="@color/text_grey" />
+                android:textColor="@color/textColorPrimary"
+                android:textColorHighlight="@color/textColorPrimary"
+                android:textColorHint="@color/textColorSecondary" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +77,7 @@
             android:layout_marginHorizontal="@dimen/item_pdding"
             android:hint="@string/pwd_txt"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/black">
+            app:passwordToggleTint="@color/textColorPrimary">
 
 
             <com.google.android.material.textfield.TextInputEditText
@@ -89,9 +88,9 @@
                 android:maxLines="1"
                 android:imeOptions="actionDone"
                 android:singleLine="true"
-                android:textColor="@color/text_black"
-                android:textColorHighlight="@color/text_black"
-                android:textColorHint="@color/text_grey" />
+                android:textColor="@color/textColorPrimary"
+                android:textColorHighlight="@color/textColorPrimary"
+                android:textColorHint="@color/textColorSecondary" />
 
         </com.google.android.material.textfield.TextInputLayout>
         
@@ -103,7 +102,8 @@
             android:layout_marginHorizontal="@dimen/item_pdding"
             android:textAllCaps="false"
             android:layout_marginTop="30dp"
-            android:textColor="@color/black"
+            android:gravity="center"
+            android:textColor="@color/textColorPrimary"
             android:textSize="@dimen/font_size_smaller"
             android:text="@string/login_txt"
             android:background="@drawable/btn_circle"/>
@@ -115,7 +115,7 @@
             android:text="@string/go_registe_txt"
             android:background="?selectableItemBackground"
             android:textSize="@dimen/font_size_smaller"
-            android:textColor="@color/black"
+            android:textColor="@color/textColorPrimary"
             android:layout_marginTop="12dp"
             android:paddingHorizontal="12dp"
             android:paddingVertical="8dp"

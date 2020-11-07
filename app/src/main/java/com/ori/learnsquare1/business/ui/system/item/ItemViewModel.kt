@@ -15,6 +15,7 @@ class ItemViewModel : BaseViewModel() {
     private val mRepository by lazy { ItemRepository() }
 
     var articleList = MutableLiveData<MutableList<ArticleValue.DatasBean>>()
+    var collectStatus = MutableLiveData<Boolean>()
 
     fun getSystemArticle(pageIndex: Int, cateId: Int) {
         launch(
@@ -23,6 +24,31 @@ class ItemViewModel : BaseViewModel() {
                 data?.datas.let {
                     articleList.value = it
                 }
+            },
+            error = {
+
+            }
+        )
+    }
+
+
+    fun unCollect(aid: Int) {
+        launch(
+            block = {
+                userRepository.unCollectArticle(aid)
+                collectStatus.value = false
+            },
+            error = {
+
+            }
+        )
+    }
+
+    fun collect(aid: Int) {
+        launch(
+            block = {
+                userRepository.collectArticle(aid)
+                collectStatus.value = true
             },
             error = {
 

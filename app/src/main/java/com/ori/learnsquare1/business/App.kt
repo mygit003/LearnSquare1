@@ -1,6 +1,9 @@
 package com.ori.learnsquare1.business
 
 import android.app.Application
+import com.ori.learnsquare1.common.util.Constant
+import com.ori.learnsquare1.common.util.PrefUtils
+import com.ori.learnsquare1.common.util.setNightMode
 
 /**
  * 创建人: zhengpf
@@ -21,5 +24,12 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         app = this
+        setDayNightMode()
+    }
+
+
+    private fun setDayNightMode() {
+        var mode = PrefUtils.getInt(Constant.SpKey.SP_MODE_CONFIG, 0)
+        setNightMode((mode == 1))
     }
 }

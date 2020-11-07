@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.ori.learnsquare1.business.ui.setting.SettingViewModel" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bgColorPrimary"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:elevation="2dp">
+
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical|left"
+                android:background="?actionBarItemBackground"
+                android:padding="12dp"
+                android:src="@drawable/ic_arrow_back_black_24dp" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/item_sys_setting"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/font_size_title" />
+
+        </FrameLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:elevation="1dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_mode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/item_bg"
+                        android:orientation="horizontal"
+                        android:paddingVertical="10dp"
+                        android:paddingRight="16dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/item_pdding"
+                            android:layout_weight="1"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:text="夜间模式"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="@dimen/font_size_smaller" />
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/sc_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="@={viewmodel.modeConfig}" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/bgColorThird" />
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_clear_cache"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/item_bg"
+                        android:orientation="horizontal"
+                        android:paddingVertical="10dp"
+                        android:paddingRight="16dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/item_pdding"
+                            android:layout_weight="1"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:text="清除缓存"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="@dimen/font_size_smaller" />
+
+                        <TextView
+                            android:id="@+id/tv_cache"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/item_pdding"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:text="@{viewmodel.cacheValue}"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="@dimen/font_size_smaller" />
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/bgColorThird" />
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_version"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/item_bg"
+                        android:orientation="horizontal"
+                        android:paddingVertical="10dp"
+                        android:paddingRight="16dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/item_pdding"
+                            android:layout_weight="1"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:text="系统版本"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="@dimen/font_size_smaller" />
+
+
+                        <TextView
+                            android:id="@+id/tv_version"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/item_pdding"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:text="@{viewmodel.version}"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="@dimen/font_size_smaller" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/bgColorThird" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:elevation="1dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_about"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/item_bg"
+                        android:orientation="horizontal"
+                        android:paddingVertical="10dp"
+                        android:paddingRight="16dp">
+
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/item_pdding"
+                            android:layout_weight="1"
+                            android:drawablePadding="8dp"
+                            android:gravity="center_vertical"
+                            android:text="关于项目"
+                            android:textColor="@color/textColorPrimary"
+                            android:textSize="@dimen/font_size_smaller" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/bgColorThird" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/item_pdding">
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="@dimen/item_pdding"
+                android:background="@drawable/btn_circle"
+                android:text="@string/logout_txt"
+                android:gravity="center"
+                android:textAllCaps="false"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/font_size_smaller"
+                android:layout_marginBottom="20dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

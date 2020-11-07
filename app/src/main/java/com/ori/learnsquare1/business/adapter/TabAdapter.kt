@@ -34,8 +34,8 @@ class TabAdapter(list: MutableList<String>) : CommonNavigatorAdapter() {
         msptv.text = tabList[index]
         msptv.textSize = 16f
         msptv.setPadding(60, 0, 60, 0)
-        msptv.normalColor = context!!.resources.getColor(R.color.text_2)
-        msptv.selectedColor = context!!.resources.getColor(R.color.theme)
+        msptv.normalColor = context!!.resources.getColor(R.color.textColorSecondary)
+        msptv.selectedColor = context!!.resources.getColor(R.color.textColorPrimary)
         msptv.setOnClickListener {
             if (null != onTabClickListener) {
                 onTabClickListener?.onTabClick(it, index)
@@ -70,7 +70,7 @@ class TabAdapter(list: MutableList<String>) : CommonNavigatorAdapter() {
         indicator.roundRadius = UIUtil.dip2px(context, 3.0).toFloat()
         indicator.startInterpolator = AccelerateInterpolator()
         indicator.endInterpolator = DecelerateInterpolator(2.0f)
-        indicator.setColors(context!!.resources.getColor(R.color.theme))
+        indicator.setColors(context!!.resources.getColor(R.color.textColorPrimary))
         return indicator
     }
 }

@@ -12,15 +12,13 @@ import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
 class UserViewModel : BaseViewModel() {
 
 
-    private val mRepository by lazy { UserRepository() }
-
     var userAccountValue = MutableLiveData<UserAccountValue>()
 
 
     fun getUserInfo() {
         launch(
             block = {
-                val data = mRepository.getUserInfo()
+                val data = userRepository.getUserInfo()
                 userAccountValue.value = data
 
             },

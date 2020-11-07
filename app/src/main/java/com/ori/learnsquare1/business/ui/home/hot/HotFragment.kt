@@ -1,12 +1,15 @@
 package com.ori.learnsquare1.business.ui.home.hot
 
-import android.widget.Toast
+import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare.business.entity.ArticleValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
+import com.ori.learnsquare1.business.ui.web.WebActivity
 import com.ori.learnsquare1.common.base.fragment.BaseVMFragment
+import com.ori.learnsquare1.common.util.Constant
+import com.ori.learnsquare1.common.util.JsonUtil
 import kotlinx.android.synthetic.main.frg_hot.*
 
 /**
@@ -21,6 +24,7 @@ class HotFragment : BaseVMFragment<HotViewModel>() {
     private var pageSize = 20
     private var adapter: ArticleAdapter? = null
     private var hasNextPage = false
+    private var itemIndex = 0
 
 
     override fun initView() {
@@ -41,13 +45,29 @@ class HotFragment : BaseVMFragment<HotViewModel>() {
             }
         })
 
-        srl_refresh.setOnRefreshListener {
-            if (!articleList.isEmpty()) {
-                articleList.clear()
+        viewModel.collectStatus.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it) {
+                    showToast("添加收藏成功")
+                }else {
+                    showToast("取消收藏成功")
+                }
+                adapter?.getItem(itemIndex)?.collect = it
+                adapter?.notifyItemChanged(itemIndex)
             }
-            adapter?.notifyDataSetChanged()
-            pageIndex = 0
-            viewModel.getArticleList(pageIndex)
+        })
+
+        srl_refresh.apply {
+            setColorSchemeResources(R.color.textColorPrimary)
+            setProgressBackgroundColorSchemeResource(R.color.bgColorPrimary)
+            setOnRefreshListener {
+                if (!articleList.isEmpty()) {
+                    articleList.clear()
+                }
+                adapter?.notifyDataSetChanged()
+                pageIndex = 0
+                viewModel.getArticleList(pageIndex)
+            }
         }
 
     }
@@ -72,13 +92,29 @@ class HotFragment : BaseVMFragment<HotViewModel>() {
             setOnItemChildClickListener { adapter, view, position ->
                 when(view.id) {
                     R.id.iv_collect -> {
-                        Toast.makeText(activity, "点击了:$position" + "项 收藏", Toast.LENGTH_SHORT).show()
+                        itemIndex = position
+                        //Toast.makeText(activity, "点击了:$position" + "项 收藏", Toast.LENGTH_SHORT).show()
+                        var datasBean = articleList.get(position)
+                        datasBean?.let {
+                            if (it.collect) {
+                                viewModel.unCollect(it.id)
+                            }else {
+                                viewModel.collect(it.id)
+                            }
+                        }
                     }
                 }
             }
 
             setOnItemClickListener { adapter, view, position ->
-                Toast.makeText(activity, "点击了:$position" + "项", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(activity, "点击了:$position" + "项", Toast.LENGTH_SHORT).show()
+                var datasBean = articleList.get(position)
+                var bundle = Bundle().apply {
+                    putString(Constant.WebParam.PARAM_TITLE, datasBean?.title)
+                    putString(Constant.WebParam.PARAM_URL, datasBean?.link)
+                    putString(Constant.WebParam.PARAM_ITEM, JsonUtil.toJson(datasBean))
+                }
+                toActivity(WebActivity::class.java, bundle)
             }
         }
     }

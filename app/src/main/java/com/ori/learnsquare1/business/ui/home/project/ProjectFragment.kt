@@ -1,7 +1,7 @@
 package com.ori.learnsquare1.business.ui.home.project
 
+import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare.business.entity.ArticleValue
@@ -9,7 +9,10 @@ import com.ori.learnsquare.business.entity.TabValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
 import com.ori.learnsquare1.business.adapter.ItemAdapter
+import com.ori.learnsquare1.business.ui.web.WebActivity
 import com.ori.learnsquare1.common.base.fragment.BaseVMFragment
+import com.ori.learnsquare1.common.util.Constant
+import com.ori.learnsquare1.common.util.JsonUtil
 import kotlinx.android.synthetic.main.frg_project.*
 
 /**
@@ -30,6 +33,7 @@ class ProjectFragment : BaseVMFragment<ProjectViewModel>() {
     private var curCateId = 0
     private var pageSize = 15
     private var hasNextPage = false
+    private var itemIndex = 0
 
 
     override fun setRootView(): Int {
@@ -75,9 +79,29 @@ class ProjectFragment : BaseVMFragment<ProjectViewModel>() {
 
         })
 
-        srl_refresh.setOnRefreshListener {
-            pageIndex = 1
-            viewModel.getProjectArticlesList(pageIndex, curCateId)
+        viewModel.collectStatus.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                if (it) {
+                    showToast("添加收藏成功")
+                }else {
+                    showToast("取消收藏成功")
+                }
+                articleAdapter?.getItem(itemIndex)?.collect = it
+                articleAdapter?.notifyItemChanged(itemIndex)
+            }
+        })
+
+        srl_refresh.apply {
+            setColorSchemeResources(R.color.textColorPrimary)
+            setProgressBackgroundColorSchemeResource(R.color.bgColorPrimary)
+            setOnRefreshListener {
+                if (!articleList.isEmpty()) {
+                    articleList.clear()
+                }
+                articleAdapter?.notifyDataSetChanged()
+                pageIndex = 1
+                viewModel.getProjectArticlesList(pageIndex, curCateId)
+            }
         }
     }
 
@@ -140,14 +164,29 @@ class ProjectFragment : BaseVMFragment<ProjectViewModel>() {
             setOnItemChildClickListener { adapter, view, position ->
                 when (view.id) {
                     R.id.iv_collect -> {
-                        Toast.makeText(activity, "点击了:$position" + "项 收藏", Toast.LENGTH_SHORT)
-                            .show()
+                        //Toast.makeText(activity, "点击了:$position" + "项 收藏", Toast.LENGTH_SHORT).show()
+                        itemIndex = position
+                        var datasBean = articleList.get(position)
+                        datasBean?.let {
+                            if (it.collect) {
+                                viewModel.unCollect(it.id)
+                            }else {
+                                viewModel.collect(it.id)
+                            }
+                        }
                     }
                 }
             }
 
             setOnItemClickListener { adapter, view, position ->
-                Toast.makeText(activity, "点击了:$position" + "项", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(activity, "点击了:$position" + "项", Toast.LENGTH_SHORT).show()
+                var datasBean = articleList.get(position)
+                var bundle = Bundle().apply {
+                    putString(Constant.WebParam.PARAM_TITLE, datasBean?.title)
+                    putString(Constant.WebParam.PARAM_URL, datasBean?.link)
+                    putString(Constant.WebParam.PARAM_ITEM, JsonUtil.toJson(datasBean))
+                }
+                toActivity(WebActivity::class.java, bundle)
             }
         }
     }

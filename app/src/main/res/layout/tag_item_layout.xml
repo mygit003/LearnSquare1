@@ -10,5 +10,5 @@
     android:paddingVertical="6dp"
     android:text="完整项目"
     android:textAllCaps="false"
-    android:textColor="@color/item_text_color"
+    android:textColor="@color/textColorSecondary"
     android:textSize="@dimen/font_size_smallest" />

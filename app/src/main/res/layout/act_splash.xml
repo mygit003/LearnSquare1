@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/white"
+    android:background="@color/bgColorPrimary"
     android:gravity="center_horizontal">
 
     <ImageView
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="WanAndroid"
-        android:textColor="@color/theme"
+        android:textColor="@color/textColorPrimary"
         android:textSize="30sp" />
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="一个专业的Android社区"
-        android:textColor="@color/text_2"
+        android:textColor="@color/textColorSecondary"
         android:textSize="12sp" />
 
 </LinearLayout>

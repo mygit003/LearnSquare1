@@ -9,6 +9,11 @@
     <string name="item_user_txt">我的</string>
 
     <string name="item_user_integration">我的积分</string>
+    <string name="item_user_integration_rank">积分排行</string>
+    <string name="item_user_shared">我的分享</string>
+    <string name="item_user_collect">我的收藏</string>
+    <string name="item_user_history">浏览历史</string>
+    <string name="item_sys_setting">系统设置</string>
     <string name="item_user_rank">排名</string>
 
     <string name="level_text">等级：</string>
@@ -17,6 +22,7 @@
     <string name="registe_txt">注册</string>
     <string name="go_registe_txt">去注册</string>
     <string name="login_txt">登录</string>
+    <string name="logout_txt">退出</string>
 
     <string name="uname_txt">账户</string>
     <string name="pwd_txt">密码</string>

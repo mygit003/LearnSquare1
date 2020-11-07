@@ -1,4 +1,4 @@
-package com.ori.learnsquare1.business.ui
+package com.ori.learnsquare1.business.ui.web
 
 import android.text.Html
 import android.util.Log
@@ -7,9 +7,13 @@ import android.webkit.*
 import com.ori.learnsquare.business.entity.ArticleValue
 import com.ori.learnsquare.business.entity.UserValue
 import com.ori.learnsquare1.R
+import com.ori.learnsquare1.business.db.entity.BrowseHistoryValue
 import com.ori.learnsquare1.common.base.activity.BaseActivity
+import com.ori.learnsquare1.common.base.activity.BaseVMActivity
 import com.ori.learnsquare1.common.util.Constant
+import com.ori.learnsquare1.common.util.DateUtil
 import com.ori.learnsquare1.common.util.JsonUtil
+import com.ori.learnsquare1.common.util.PrefUtils
 import kotlinx.android.synthetic.main.act_web.*
 
 /**
@@ -17,7 +21,7 @@ import kotlinx.android.synthetic.main.act_web.*
  * 修改时间: 2020/7/18 11:37
  * 类说明:
  */
-class WebActivity : BaseActivity() {
+class WebActivity : BaseVMActivity<WebViewModel>() {
 
     private var webUrl: String = ""
     private var webTitle: String = ""
@@ -42,6 +46,11 @@ class WebActivity : BaseActivity() {
 
         iv_back.setOnClickListener {
             finish()
+        }
+
+        PrefUtils.getObject(Constant.SpKey.SP_USER_INFO)?.let {
+            userValue = it as UserValue
+            saveBrowseRecordData()
         }
 
         tv_title.text = Html.fromHtml(webTitle)
@@ -86,5 +95,28 @@ class WebActivity : BaseActivity() {
             return true
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    private fun saveBrowseRecordData() {
+        BrowseHistoryValue().apply {
+            datasBean?.let {
+                articleId = it.id
+                userId = userValue?.id
+                articleTitle = it.title
+                articleAuthor = it.author
+                articleChapter = it.superChapterName
+                articleLink = it.link
+                articleLinkPic = it.envelopePic
+                articleCollect = if (it.collect ) 1 else 0
+                articlePublishTime = it.niceDate
+                browseTime = DateUtil.getCurTime()
+                //保存数据
+                viewModel.addHistory(this)
+            }
+        }
+    }
+
+    override fun setViewModelClass(): Class<WebViewModel> {
+        return WebViewModel::class.java
     }
 }

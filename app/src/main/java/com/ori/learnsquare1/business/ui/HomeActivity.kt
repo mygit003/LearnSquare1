@@ -2,6 +2,9 @@ package com.ori.learnsquare1.business.ui
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
+import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.ViewPropertyAnimator
 import androidx.fragment.app.Fragment
@@ -31,6 +34,7 @@ class HomeActivity : BaseActivity() {
 
 
     override fun init() {
+        Log.w(TAG, "onCreate")
         initFragment()
         switchByBottomItem()
     }
@@ -120,4 +124,28 @@ class HomeActivity : BaseActivity() {
                 }
             })
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        Log.w(TAG, "onResume")
+        Log.w(TAG, "pos:$previousPos")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.w(TAG, "onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.w(TAG, "onPause")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.w(TAG, "onDestroy")
+    }
+
+
 }

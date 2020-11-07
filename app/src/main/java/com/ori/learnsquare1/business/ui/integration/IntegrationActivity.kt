@@ -5,11 +5,9 @@ import androidx.lifecycle.Observer
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare.business.entity.IntegrationRecordValue
 import com.ori.learnsquare.business.entity.UserAccountValue
-import com.ori.learnsquare.business.entity.UserValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.IntegrationRecordAdapter
-import com.ori.learnsquare1.business.ui.WebActivity
-import com.ori.learnsquare1.common.base.activity.BaseActivity
+import com.ori.learnsquare1.business.ui.web.WebActivity
 import com.ori.learnsquare1.common.base.activity.BaseDataBindingVMActivity
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.PrefUtils
@@ -24,7 +22,7 @@ import kotlinx.android.synthetic.main.act_integration.*
 class IntegrationActivity : BaseDataBindingVMActivity<ActIntegrationBinding, IntegrationViewModel>() {
 
 
-    //private var account: UserAccountValue? = null
+    private var account: UserAccountValue? = null
     private val recordList: MutableList<IntegrationRecordValue> = mutableListOf()
     private var mAdapter: IntegrationRecordAdapter? = null
     private val pageSize = 20
@@ -56,7 +54,13 @@ class IntegrationActivity : BaseDataBindingVMActivity<ActIntegrationBinding, Int
         }
 
         srl_refresh.apply {
+            setColorSchemeResources(R.color.textColorPrimary)
+            setProgressBackgroundColorSchemeResource(R.color.bgColorPrimary)
             setOnRefreshListener {
+                if (!recordList.isEmpty()) {
+                    recordList.clear()
+                }
+                mAdapter?.notifyDataSetChanged()
                 pageIndex = 1
                 viewModel.getIntegrationRecord(pageIndex)
             }
@@ -69,6 +73,7 @@ class IntegrationActivity : BaseDataBindingVMActivity<ActIntegrationBinding, Int
             userAccount.observe(this@IntegrationActivity, Observer {
                 it?.let {account ->
                     viewDataBinding.account = account
+                    PrefUtils.setObject(Constant.SpKey.SP_INTEGRAL_INFO, account)
             }
             })
 
@@ -95,7 +100,18 @@ class IntegrationActivity : BaseDataBindingVMActivity<ActIntegrationBinding, Int
         }
 
         ltv_loading.loading()
-        viewModel.getUserAccount()
+
+        //显示积分数据
+        PrefUtils.getObject(Constant.SpKey.SP_INTEGRAL_INFO).let {
+            account = it as UserAccountValue
+        }
+
+        if (null == account) {
+            viewModel.getUserAccount()
+        }else {
+            viewDataBinding.account = account
+        }
+        //获取积分签到记录
         viewModel.getIntegrationRecord(pageIndex)
     }
 

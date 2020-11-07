@@ -7,6 +7,6 @@
         android:radius="8dp"/>
 
     <solid
-        android:color="@android:color/white"/>
+        android:color="@color/bgColorPrimary"/>
 
 </shape>

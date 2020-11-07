@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/white"
+    android:background="@color/bgColorPrimary"
     android:gravity="center">
 
 
@@ -19,6 +19,6 @@
         android:text="暂无数据"
         android:textAllCaps="false"
         android:textSize="22sp"
-        android:textColor="@color/text_grey"/>
+        android:textColor="@color/textColorSecondary"/>
 
 </LinearLayout>

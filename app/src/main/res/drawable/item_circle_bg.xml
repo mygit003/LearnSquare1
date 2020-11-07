@@ -7,7 +7,7 @@
             <corners
                 android:radius="20dp"/>
 
-            <solid android:color="#D3D3D3"/>
+            <solid android:color="@color/bgColorThird"/>
         </shape>
     </item>
 
@@ -17,7 +17,7 @@
             <corners
                 android:radius="20dp"/>
 
-            <solid android:color="#F8F8F8"/>
+            <solid android:color="@color/bgColorThird"/>
         </shape>
     </item>
 

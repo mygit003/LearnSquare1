@@ -41,8 +41,10 @@ object HttpUtils {
         val cache = Cache(cacheFile, 1024 * 1024 * 100)
 
         //cookie
-        cookieJar = PersistentCookieJar(SetCookieCache(),
-            SharedPrefsCookiePersistor(App.getApp()))
+        cookieJar = PersistentCookieJar(
+            SetCookieCache(),
+            SharedPrefsCookiePersistor(App.getApp())
+        )
 
         val client = OkHttpClient.Builder()
             .retryOnConnectionFailure(true)
@@ -64,7 +66,7 @@ object HttpUtils {
     }
 
 
-   private fun getRetrofitInstance(): Retrofit {
+    private fun getRetrofitInstance(): Retrofit {
         Log.d("HttpUtils", retrofit.toString())
         return retrofit
     }

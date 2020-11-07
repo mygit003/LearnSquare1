@@ -1,8 +1,7 @@
 package com.ori.learnsquare1.business.ui.system.item
 
+import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare.business.entity.ArticleValue
@@ -11,11 +10,11 @@ import com.ori.learnsquare.business.entity.TabValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
 import com.ori.learnsquare1.business.adapter.ItemAdapter
-import com.ori.learnsquare1.business.adapter.TabAdapter
+import com.ori.learnsquare1.business.ui.web.WebActivity
 import com.ori.learnsquare1.common.base.fragment.BaseVMFragment
+import com.ori.learnsquare1.common.util.Constant
+import com.ori.learnsquare1.common.util.JsonUtil
 import kotlinx.android.synthetic.main.frg_item.*
-import kotlinx.android.synthetic.main.frg_system.*
-import java.text.FieldPosition
 
 /**
  * 创建人: zhengpf
@@ -37,6 +36,7 @@ class ItemFragment : BaseVMFragment<ItemViewModel>() {
     private var curCateId = 0
     private var pageSize = 20
     private var hasNextPage = false
+    private var itemIndex = 0
 
 
 
@@ -70,11 +70,31 @@ class ItemFragment : BaseVMFragment<ItemViewModel>() {
                     articleAdapter?.loadMoreEnd()
                 }
             })
+
+            collectStatus.observe(viewLifecycleOwner, Observer {
+                it?.let {
+                    if (it) {
+                        showToast("添加收藏成功")
+                    }else {
+                        showToast("取消收藏成功")
+                    }
+                    articleAdapter?.getItem(itemIndex)?.collect = it
+                    articleAdapter?.notifyItemChanged(itemIndex)
+                }
+            })
         }
 
-        srl_refresh.setOnRefreshListener {
-            pageIndex = 0
-            viewModel.getSystemArticle(pageIndex, curCateId)
+        srl_refresh.apply {
+            setColorSchemeResources(R.color.textColorPrimary)
+            setProgressBackgroundColorSchemeResource(R.color.bgColorPrimary)
+            setOnRefreshListener {
+                if (!articles.isEmpty()) {
+                    articles.clear()
+                }
+                articleAdapter?.notifyDataSetChanged()
+                pageIndex = 0
+                viewModel.getSystemArticle(pageIndex, curCateId)
+            }
         }
     }
 
@@ -135,15 +155,30 @@ class ItemFragment : BaseVMFragment<ItemViewModel>() {
             setOnItemChildClickListener { adapter, view, position ->
                 when(view.id) {
                     R.id.iv_collect -> {
-                        Toast.makeText(activity, "点击了:$position" + "项 收藏", Toast.LENGTH_SHORT)
-                            .show()
+                        //Toast.makeText(activity, "点击了:$position" + "项 收藏", Toast.LENGTH_SHORT).show()
+                        itemIndex = position
+                        var datasBean = articles.get(position)
+                        datasBean?.let {
+                            if (it.collect) {
+                                viewModel.unCollect(it.id)
+                            }else {
+                                viewModel.collect(it.id)
+                            }
+                        }
                     }
                 }
 
             }
 
             setOnItemClickListener { adapter, view, position ->
-                Toast.makeText(activity, "点击了:$position" + "项", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(activity, "点击了:$position" + "项", Toast.LENGTH_SHORT).show()
+                var datasBean = articles[position]
+                var bundle = Bundle().apply {
+                    putString(Constant.WebParam.PARAM_TITLE, datasBean?.title)
+                    putString(Constant.WebParam.PARAM_URL, datasBean?.link)
+                    putString(Constant.WebParam.PARAM_ITEM, JsonUtil.toJson(datasBean))
+                }
+                toActivity(WebActivity::class.java, bundle)
             }
 
 

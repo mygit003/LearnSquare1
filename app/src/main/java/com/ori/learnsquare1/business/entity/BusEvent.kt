@@ -7,6 +7,11 @@ package com.ori.learnsquare1.business.entity
  */
 class BusEvent() {
 
+    constructor(msgId: Int, msg: String): this(){
+        this.msgId = msgId
+        this.msg = msg
+    }
+
     var msgId: Int = 0
     var msg: String? = null
 }

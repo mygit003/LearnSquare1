@@ -1,11 +1,13 @@
 package com.ori.learnsquare1.common.base.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.JsonParseException
 import com.ori.learnsquare1.business.App
+import com.ori.learnsquare1.business.ui.user.UserRepository
 import com.ori.learnsquare1.common.base.http.ApiException
 import com.ori.learnsquare1.common.base.http.BaseResponse
 import com.ori.learnsquare1.common.ext.showToast
@@ -34,6 +36,7 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle {
     private val TAG = this.javaClass.simpleName;
 
     private lateinit var lifcycleOwner: LifecycleOwner
+    protected val userRepository by lazy { UserRepository() }
 
 
     protected fun launch(block: Block<Unit>, error: Error? = null, cancel: Cancel? = null): Job {
@@ -133,27 +136,28 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle {
     }
 
     override fun onCreate() {
-
+        Log.d(TAG, "onCreate")
     }
 
     override fun onStart() {
+        Log.d(TAG, "onStart")
 
     }
 
     override fun onResume() {
-
+        Log.d(TAG, "onResume")
     }
 
     override fun onPause() {
-
+        Log.d(TAG, "onPause")
     }
 
     override fun onStop() {
-
+        Log.d(TAG, "onStop")
     }
 
     override fun onDestroy() {
-
+        Log.d(TAG, "onDestroy")
     }
 
 
