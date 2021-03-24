@@ -1,12 +1,13 @@
 package com.ori.learnsquare1.common.base.activity
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.common.util.ActivityManage
-import com.ori.learnsquare1.common.util.ColorUtils
 import com.ori.learnsquare1.common.util.StatusUtils
 
 /**
@@ -20,9 +21,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         setActivityContent()
-//        setStatusColor()
-//        setSystemInvadeBlack(false)
+        setStatusColor()
+        setSystemInvadeBlack(false)
         ActivityManage.getInstance().pushActivity(this)
 
         // 因为Activity恢复后savedInstanceState不为null，
@@ -68,7 +70,7 @@ abstract class BaseActivity : AppCompatActivity() {
      */
     protected open fun setStatusColor() {
         //#00000000 #00ffffff
-        StatusUtils.setUseStatusBarColor(this, resources.getColor(R.color.colorPrimary))
+        StatusUtils.setUseStatusBarColor(this, resources.getColor(android.R.color.transparent))
     }
 
     /**

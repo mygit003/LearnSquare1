@@ -32,6 +32,7 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
     }
 
     override fun init() {
+        setSystemInvadeBlack(true);
         checkAppPermission()
     }
 
