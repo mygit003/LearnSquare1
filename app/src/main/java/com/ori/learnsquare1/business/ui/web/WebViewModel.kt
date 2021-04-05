@@ -24,7 +24,7 @@ class WebViewModel : BaseViewModel() {
 
             },
             error = {
-                Log.e("err", it.message)
+                it?.message?.let { msg ->  Log.e("err", msg)}
             }
         )
     }

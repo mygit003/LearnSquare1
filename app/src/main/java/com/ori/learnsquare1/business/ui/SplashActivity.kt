@@ -3,7 +3,11 @@ package com.ori.learnsquare1.business.ui
 import android.Manifest
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.view.KeyEvent
+import android.view.View
+import android.view.WindowManager
+import androidx.annotation.RequiresApi
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.common.base.activity.BaseActivity
 import kotlinx.coroutines.GlobalScope
@@ -27,12 +31,15 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
 
     private var job: Job? = null
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun setRootView(): Int {
+        //getWindow().setBackgroundDrawable(null);
+        setFullScreen()
         return R.layout.act_splash
     }
 
     override fun init() {
-        setSystemInvadeBlack(true);
+        setSystemInvadeBlack(true)
         checkAppPermission()
     }
 
@@ -101,5 +108,16 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
         }
     }
 
+    private fun setFullScreen() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            // 延伸显示区域到刘海
+            val lp: WindowManager.LayoutParams = window.getAttributes()
+            lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+            window.setAttributes(lp)
+            // 设置页面全屏显示
+            val decorView: View = window.getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+        }
+    }
 
 }

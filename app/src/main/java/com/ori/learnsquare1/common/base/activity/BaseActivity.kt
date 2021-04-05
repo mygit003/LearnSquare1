@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.common.util.ActivityManage
 import com.ori.learnsquare1.common.util.StatusUtils

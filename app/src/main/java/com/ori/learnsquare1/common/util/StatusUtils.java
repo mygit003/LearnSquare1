@@ -93,7 +93,13 @@ public class StatusUtils {
             // after 23(6.0)
             flag |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         }
-        activity.getWindow().getDecorView().setSystemUiVisibility(flag);
+
+        if (isTransparent) {
+            //隐藏导航栏
+            NavigationBarUtil.hideBottomNav(activity);
+        }else {
+            activity.getWindow().getDecorView().setSystemUiVisibility(flag);
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             // between 19(4.4) and 21(5.0)
@@ -163,4 +169,8 @@ public class StatusUtils {
             activity.getWindow().setNavigationBarColor(color);
         }
     }
+
+
+
+
 }

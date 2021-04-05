@@ -2,6 +2,7 @@ package com.ori.learnsquare1.common.base.activity
 
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.viewbinding.ViewBinding
 
 /**
  * 创建人: zhengpf

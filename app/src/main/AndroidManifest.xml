@@ -22,12 +22,20 @@
         android:supportsRtl="true"
         android:theme="@style/BaseAppTheme">
 
+        <!-- Render on full screen up to screen aspect ratio of 2.4 -->
+        <!-- Use a letterbox on screens larger than 2.4 -->
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.4" />
+
+
         <activity
             android:name="com.ori.learnsquare1.business.ui.SplashActivity"
             android:launchMode="singleTop"
+            android:resizeableActivity="false"
             android:screenOrientation="fullSensor"
-            android:theme="@style/SplashTheme"
-            android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,18 +47,21 @@
             android:name="com.ori.learnsquare1.business.ui.HomeActivity"
             android:launchMode="singleTask"
             android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
         <activity
             android:name="com.ori.learnsquare1.business.ui.web.WebActivity"
             android:launchMode="singleTop"
             android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
         <activity
             android:name="com.ori.learnsquare1.business.ui.login.LoginActivity"
             android:launchMode="singleTop"
             android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
 
@@ -58,12 +69,14 @@
             android:name="com.ori.learnsquare1.business.ui.registe.RegisteActivity"
             android:launchMode="singleTop"
             android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
         <activity
             android:name="com.ori.learnsquare1.business.ui.integration.IntegrationActivity"
             android:launchMode="singleTop"
             android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
 
@@ -71,30 +84,35 @@
             android:name="com.ori.learnsquare1.business.ui.rank.RankActivity"
             android:launchMode="singleTop"
             android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
         <activity
             android:name="com.ori.learnsquare1.business.ui.shared.SharedActivity"
             android:launchMode="singleTop"
             android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
         <activity
             android:name="com.ori.learnsquare1.business.ui.collect.CollectActivity"
             android:launchMode="singleTop"
             android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
         <activity
             android:name="com.ori.learnsquare1.business.ui.setting.SettingActivity"
             android:launchMode="singleTop"
             android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
 
         <activity
             android:name="com.ori.learnsquare1.business.ui.history.HistoryActivity"
             android:launchMode="singleTop"
             android:screenOrientation="fullSensor"
+            android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
     </application>
 
