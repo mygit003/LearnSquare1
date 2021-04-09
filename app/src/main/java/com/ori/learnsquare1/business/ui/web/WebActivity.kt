@@ -4,8 +4,8 @@ import android.text.Html
 import android.util.Log
 import android.view.KeyEvent
 import android.webkit.*
-import com.ori.learnsquare.business.entity.ArticleValue
-import com.ori.learnsquare.business.entity.UserValue
+import com.ori.learnsquare1.business.entity.ArticleValue
+import com.ori.learnsquare1.business.entity.UserValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.db.entity.BrowseHistoryValue
 import com.ori.learnsquare1.common.base.activity.BaseActivity

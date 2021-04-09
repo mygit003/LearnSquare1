@@ -1,9 +1,6 @@
 package com.ori.learnsquare1.business.util
 
-import com.ori.learnsquare.business.entity.*
-import com.ori.learnsquare1.business.entity.HotWordValue
-import com.ori.learnsquare1.business.entity.OfterSearchValue
-import com.ori.learnsquare1.business.entity.PageValue
+import com.ori.learnsquare1.business.entity.*
 import com.ori.learnsquare1.common.base.http.BaseResponse
 import retrofit2.http.*
 

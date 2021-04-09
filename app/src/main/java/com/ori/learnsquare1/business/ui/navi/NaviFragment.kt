@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.donkingliang.labels.LabelsView
-import com.ori.learnsquare.business.entity.ArticleValue
-import com.ori.learnsquare.business.entity.NavigationValue
+import com.ori.learnsquare1.business.entity.ArticleValue
+import com.ori.learnsquare1.business.entity.NavigationValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.ui.web.WebActivity
 import com.ori.learnsquare1.common.base.fragment.BaseVMFragment

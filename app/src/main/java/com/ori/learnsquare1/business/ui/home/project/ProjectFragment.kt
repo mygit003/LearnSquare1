@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.ori.learnsquare.business.entity.ArticleValue
-import com.ori.learnsquare.business.entity.TabValue
+import com.ori.learnsquare1.business.entity.ArticleValue
+import com.ori.learnsquare1.business.entity.TabValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
 import com.ori.learnsquare1.business.adapter.ItemAdapter

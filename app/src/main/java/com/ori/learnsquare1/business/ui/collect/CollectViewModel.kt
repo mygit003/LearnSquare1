@@ -2,7 +2,7 @@ package com.ori.learnsquare1.business.ui.collect
 
 import android.renderscript.Script
 import androidx.lifecycle.MutableLiveData
-import com.ori.learnsquare.business.entity.ArticleValue
+import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
 
 /**
@@ -23,7 +23,7 @@ class CollectViewModel : BaseViewModel() {
             block = {
                 val data = mRepository.getCollectList(pageIndex)
                 data?.let {
-                    val list:MutableList<ArticleValue.DatasBean> = mutableListOf()
+                    val list: MutableList<ArticleValue.DatasBean> = mutableListOf()
                     it.forEach {item ->
                         var bean: ArticleValue.DatasBean = ArticleValue.DatasBean()
                         bean.title = item.title

@@ -1,6 +1,6 @@
 package com.ori.learnsquare1.business.ui.home.project
 
-import com.ori.learnsquare.business.entity.ArticleValue
+import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.common.base.http.BaseResponse
 import com.ori.learnsquare1.common.base.http.HttpUtils
 

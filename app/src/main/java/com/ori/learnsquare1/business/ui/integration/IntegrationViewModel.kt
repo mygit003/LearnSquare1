@@ -1,8 +1,8 @@
 package com.ori.learnsquare1.business.ui.integration
 
 import androidx.lifecycle.MutableLiveData
-import com.ori.learnsquare.business.entity.IntegrationRecordValue
-import com.ori.learnsquare.business.entity.UserAccountValue
+import com.ori.learnsquare1.business.entity.IntegrationRecordValue
+import com.ori.learnsquare1.business.entity.UserAccountValue
 import com.ori.learnsquare1.business.ui.user.UserRepository
 import com.ori.learnsquare1.common.base.http.HttpUtils
 import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel

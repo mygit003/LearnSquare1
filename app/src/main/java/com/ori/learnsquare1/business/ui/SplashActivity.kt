@@ -10,6 +10,7 @@ import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.common.base.activity.BaseActivity
+import kotlinx.android.synthetic.main.act_splash.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -31,7 +32,6 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
 
     private var job: Job? = null
 
-    @RequiresApi(Build.VERSION_CODES.P)
     override fun setRootView(): Int {
         //getWindow().setBackgroundDrawable(null);
         setFullScreen()
@@ -60,11 +60,18 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
     }
 
     fun startMain() {
-       job = GlobalScope.launch {
-           delay(2000)
-           startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
-           finish()
-        }
+//       job = GlobalScope.launch {
+//           delay(1500)
+//           startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
+//           finish()
+//        }
+        ivLogo.postDelayed(object : Runnable {
+            override fun run() {
+                startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
+                finish()
+            }
+
+        }, 1500)
     }
 
     override fun onRequestPermissionsResult(
@@ -99,24 +106,29 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
         return super.dispatchKeyEvent(event)
     }
 
-
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onPause() {
+        super.onPause()
         if (null != job && !job!!.isCancelled) {
             job?.cancel()
             job = null
         }
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+    }
+
     private fun setFullScreen() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             // 延伸显示区域到刘海
-            val lp: WindowManager.LayoutParams = window.getAttributes()
+            val lp: WindowManager.LayoutParams = window.attributes
             lp.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
-            window.setAttributes(lp)
+            window.attributes = lp
             // 设置页面全屏显示
-            val decorView: View = window.getDecorView();
-            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE)
+            val decorView: View = window.decorView
+            decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         }
     }
 

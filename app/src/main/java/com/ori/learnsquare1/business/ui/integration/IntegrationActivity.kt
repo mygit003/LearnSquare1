@@ -3,8 +3,8 @@ package com.ori.learnsquare1.business.ui.integration
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.ori.learnsquare.business.entity.IntegrationRecordValue
-import com.ori.learnsquare.business.entity.UserAccountValue
+import com.ori.learnsquare1.business.entity.IntegrationRecordValue
+import com.ori.learnsquare1.business.entity.UserAccountValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.IntegrationRecordAdapter
 import com.ori.learnsquare1.business.ui.web.WebActivity

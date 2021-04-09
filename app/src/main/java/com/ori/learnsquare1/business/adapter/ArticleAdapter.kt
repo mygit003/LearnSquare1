@@ -3,7 +3,7 @@ package com.ori.learnsquare1.business.adapter
 import android.text.TextUtils
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.ori.learnsquare.business.entity.ArticleValue
+import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.ImageUtil

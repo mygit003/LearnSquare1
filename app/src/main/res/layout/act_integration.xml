@@ -7,7 +7,7 @@
 
         <variable
             name="account"
-            type="com.ori.learnsquare.business.entity.UserAccountValue" />
+            type="com.ori.learnsquare1.business.entity.UserAccountValue" />
 
     </data>
 

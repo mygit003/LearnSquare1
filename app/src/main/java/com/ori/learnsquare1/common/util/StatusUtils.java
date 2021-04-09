@@ -94,8 +94,8 @@ public class StatusUtils {
             flag |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
         }
 
+        //隐藏导航栏
         if (isTransparent) {
-            //隐藏导航栏
             NavigationBarUtil.hideBottomNav(activity);
         }else {
             activity.getWindow().getDecorView().setSystemUiVisibility(flag);

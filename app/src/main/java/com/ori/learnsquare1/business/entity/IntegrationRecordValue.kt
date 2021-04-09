@@ -1,4 +1,4 @@
-package com.ori.learnsquare.business.entity
+package com.ori.learnsquare1.business.entity
 
 /**
  * 创建人: zhengpf

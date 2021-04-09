@@ -1,7 +1,7 @@
 package com.ori.learnsquare1.business.ui.navi
 
 import androidx.lifecycle.MutableLiveData
-import com.ori.learnsquare.business.entity.NavigationValue
+import com.ori.learnsquare1.business.entity.NavigationValue
 import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
 
 /**

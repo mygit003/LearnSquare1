@@ -1,7 +1,7 @@
 package com.ori.learnsquare1.business.ui.shared
 
 import androidx.lifecycle.MutableLiveData
-import com.ori.learnsquare.business.entity.ArticleValue
+import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.common.base.http.HttpUtils
 import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
 

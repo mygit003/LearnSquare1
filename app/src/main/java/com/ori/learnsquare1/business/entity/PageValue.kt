@@ -1,6 +1,5 @@
 package com.ori.learnsquare1.business.entity
 
-import com.ori.learnsquare.business.entity.RankValue
 
 /**
  * 创建人: zhengpf

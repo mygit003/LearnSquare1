@@ -1,8 +1,8 @@
 package com.ori.learnsquare1.business.ui.system
 
 import androidx.lifecycle.MutableLiveData
-import com.ori.learnsquare.business.entity.ArticleValue
-import com.ori.learnsquare.business.entity.SystemValue
+import com.ori.learnsquare1.business.entity.ArticleValue
+import com.ori.learnsquare1.business.entity.SystemValue
 import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
 
 /**

@@ -3,7 +3,7 @@ package com.ori.learnsquare1.business.ui.user
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
-import com.ori.learnsquare.business.entity.UserValue
+import com.ori.learnsquare1.business.entity.UserValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.entity.BusEvent
 import com.ori.learnsquare1.business.ui.web.WebActivity

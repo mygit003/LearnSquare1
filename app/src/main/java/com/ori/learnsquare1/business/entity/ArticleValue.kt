@@ -1,4 +1,4 @@
-package com.ori.learnsquare.business.entity
+package com.ori.learnsquare1.business.entity
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.ori.learnsquare1.common.util.Constant

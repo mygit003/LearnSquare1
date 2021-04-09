@@ -2,9 +2,9 @@ package com.ori.learnsquare1.business.ui.rank
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.ori.learnsquare.business.entity.ArticleValue
-import com.ori.learnsquare.business.entity.IntegrationRecordValue
-import com.ori.learnsquare.business.entity.RankValue
+import com.ori.learnsquare1.business.entity.ArticleValue
+import com.ori.learnsquare1.business.entity.IntegrationRecordValue
+import com.ori.learnsquare1.business.entity.RankValue
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
 import com.ori.learnsquare1.business.adapter.IntegrationRankAdapter
 import com.ori.learnsquare1.business.adapter.IntegrationRecordAdapter

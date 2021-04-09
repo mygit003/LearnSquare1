@@ -6,11 +6,11 @@
 
         <variable
             name="account"
-            type="com.ori.learnsquare.business.entity.UserAccountValue" />
+            type="com.ori.learnsquare1.business.entity.UserAccountValue" />
 
         <variable
             name="list"
-            type="java.util.List&lt;com.ori.learnsquare.business.entity.RankValue>" />
+            type="java.util.List&lt;com.ori.learnsquare1.business.entity.RankValue>" />
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"

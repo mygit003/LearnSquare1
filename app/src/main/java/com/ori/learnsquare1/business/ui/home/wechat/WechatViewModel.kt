@@ -2,8 +2,8 @@ package com.ori.learnsquare1.business.ui.home.wechat
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.ori.learnsquare.business.entity.ArticleValue
-import com.ori.learnsquare.business.entity.TabValue
+import com.ori.learnsquare1.business.entity.ArticleValue
+import com.ori.learnsquare1.business.entity.TabValue
 import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
 
 /**

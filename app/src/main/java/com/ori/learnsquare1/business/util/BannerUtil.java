@@ -54,7 +54,7 @@ public class BannerUtil {
         //设置允许用户手动操作
         mBanner.setAllowUserScrollable(true);
         //设置banner动画效果
-        mBanner.setTransitionEffect(TransitionEffect.Cube);
+        mBanner.setTransitionEffect(TransitionEffect.Default);
         //设置页面展示时间 5s
         mBanner.setAutoPlayInterval(5000);
         //轮播页面切换时间 2s

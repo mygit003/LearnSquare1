@@ -2,7 +2,7 @@ package com.ori.learnsquare1.business.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
-import com.ori.learnsquare.business.entity.TabValue
+import com.ori.learnsquare1.business.entity.TabValue
 import com.ori.learnsquare1.R
 
 /**

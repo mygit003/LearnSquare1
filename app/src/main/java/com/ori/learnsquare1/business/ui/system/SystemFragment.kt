@@ -5,9 +5,9 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.ori.learnsquare.business.entity.ArticleValue
-import com.ori.learnsquare.business.entity.BannerValue
-import com.ori.learnsquare.business.entity.SystemValue
+import com.ori.learnsquare1.business.entity.ArticleValue
+import com.ori.learnsquare1.business.entity.BannerValue
+import com.ori.learnsquare1.business.entity.SystemValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
 import com.ori.learnsquare1.business.adapter.FragmentListAdapter
