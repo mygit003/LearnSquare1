@@ -8,6 +8,8 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.common.base.activity.BaseActivity
 import kotlinx.android.synthetic.main.act_splash.*
@@ -33,7 +35,7 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
     private var job: Job? = null
 
     override fun setRootView(): Int {
-        //getWindow().setBackgroundDrawable(null);
+        window.setBackgroundDrawable(null)
         setFullScreen()
         return R.layout.act_splash
     }
@@ -60,18 +62,18 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
     }
 
     fun startMain() {
-//       job = GlobalScope.launch {
-//           delay(1500)
-//           startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
-//           finish()
-//        }
-        ivLogo.postDelayed(object : Runnable {
-            override fun run() {
-                startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
-                finish()
-            }
-
-        }, 1500)
+        job = lifecycleScope.launch {
+            delay(1500)
+            startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
+            finish()
+        }
+//        ivLogo.postDelayed(object : Runnable {
+//            override fun run() {
+//                startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
+//                finish()
+//            }
+//
+//        }, 1500)
     }
 
     override fun onRequestPermissionsResult(
