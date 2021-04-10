@@ -10,17 +10,17 @@ import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
 import com.ori.learnsquare1.business.adapter.ItemAdapter
 import com.ori.learnsquare1.business.ui.web.WebActivity
-import com.ori.learnsquare1.common.base.fragment.BaseVMFragment
+import com.ori.learnsquare1.common.base.fragment.BaseViewBindingVMFragment
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.JsonUtil
-import kotlinx.android.synthetic.main.frg_project.*
+import com.ori.learnsquare1.databinding.FrgWechatBinding
 
 /**
  * 创建人: zhengpf
  * 修改时间: 2020/7/11 12:18
  * 类说明:
  */
-class WeChatFragment : BaseVMFragment<WechatViewModel>() {
+class WeChatFragment : BaseViewBindingVMFragment<FrgWechatBinding, WechatViewModel>() {
 
 
     private var tabList = mutableListOf<TabValue>()
@@ -91,7 +91,7 @@ class WeChatFragment : BaseVMFragment<WechatViewModel>() {
         })
 
 
-        srl_refresh.apply {
+        viewBinding.srlRefresh.apply {
             setColorSchemeResources(R.color.textColorPrimary)
             setProgressBackgroundColorSchemeResource(R.color.bgColorPrimary)
             setOnRefreshListener {
@@ -118,7 +118,7 @@ class WeChatFragment : BaseVMFragment<WechatViewModel>() {
         if (null == tabAdapter) {
             tabAdapter = ItemAdapter(R.layout.tag_item_layout, tabList)
 
-            rv_tab_list.adapter = tabAdapter
+            viewBinding.rvTabList.adapter = tabAdapter
         }
 
         tabAdapter?.run {
@@ -141,7 +141,7 @@ class WeChatFragment : BaseVMFragment<WechatViewModel>() {
 
 
     private fun completeRefresh() {
-        srl_refresh.isRefreshing = false
+        viewBinding.srlRefresh.isRefreshing = false
     }
 
 
@@ -149,7 +149,7 @@ class WeChatFragment : BaseVMFragment<WechatViewModel>() {
         if (null == articleAdapter) {
             articleAdapter = ArticleAdapter(articleList)
 
-            rv_list.adapter = articleAdapter
+            viewBinding.rvList.adapter = articleAdapter
         }
 
         articleAdapter?.run {
@@ -160,7 +160,7 @@ class WeChatFragment : BaseVMFragment<WechatViewModel>() {
                     viewModel.getWeChatArticlesList(pageIndex, curCateId)
                 }
 
-            }, rv_list)
+            }, viewBinding.rvList)
 
             setOnItemChildClickListener { adapter, view, position ->
                 when (view.id) {

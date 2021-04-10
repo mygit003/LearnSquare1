@@ -12,16 +12,17 @@ import com.ori.learnsquare1.business.adapter.ArticleAdapter
 import com.ori.learnsquare1.business.adapter.ItemAdapter
 import com.ori.learnsquare1.business.ui.web.WebActivity
 import com.ori.learnsquare1.common.base.fragment.BaseVMFragment
+import com.ori.learnsquare1.common.base.fragment.BaseViewBindingVMFragment
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.JsonUtil
-import kotlinx.android.synthetic.main.frg_item.*
+import com.ori.learnsquare1.databinding.FrgItemBinding
 
 /**
  * 创建人: zhengpf
  * 修改时间: 2020/7/12 11:02
  * 类说明:
  */
-class ItemFragment : BaseVMFragment<ItemViewModel>() {
+class ItemFragment : BaseViewBindingVMFragment<FrgItemBinding, ItemViewModel>() {
 
 
     private var itemList: ArrayList<SystemValue.ItemValue> = arrayListOf()
@@ -47,7 +48,7 @@ class ItemFragment : BaseVMFragment<ItemViewModel>() {
 
         viewModel.apply {
             articleList.observe(viewLifecycleOwner, Observer {
-                ltv_loading.dismiss()
+                viewBinding.ltvLoading.dismiss()
                 refreshComplete()
                 if (pageIndex == 0) {
                     if (!articles.isEmpty()) {
@@ -84,7 +85,7 @@ class ItemFragment : BaseVMFragment<ItemViewModel>() {
             })
         }
 
-        srl_refresh.apply {
+        viewBinding.srlRefresh.apply {
             setColorSchemeResources(R.color.textColorPrimary)
             setProgressBackgroundColorSchemeResource(R.color.bgColorPrimary)
             setOnRefreshListener {
@@ -99,7 +100,7 @@ class ItemFragment : BaseVMFragment<ItemViewModel>() {
     }
 
     override fun initData() {
-        ltv_loading.loading()
+        viewBinding.ltvLoading.loading()
         Log.w(TAG, "hasNextPage:${hasNextPage}")
         if (!tabList.isEmpty()) {
             tabList.clear()
@@ -144,7 +145,7 @@ class ItemFragment : BaseVMFragment<ItemViewModel>() {
             }
         }
 
-        rv_tab_list.adapter = tabAdapter
+        viewBinding.rvTabList.adapter = tabAdapter
     }
 
     private fun bindArticlesList() {
@@ -188,14 +189,14 @@ class ItemFragment : BaseVMFragment<ItemViewModel>() {
                     pageIndex++
                     viewModel.getSystemArticle(pageIndex, curCateId)
                 }
-            }, rv_list)
+            }, viewBinding.rvList)
         }
 //        if (null == articleAdapter) {
 //
 //        }
 
 
-        rv_list.adapter = articleAdapter
+        viewBinding.rvList.adapter = articleAdapter
     }
 
 
@@ -207,6 +208,6 @@ class ItemFragment : BaseVMFragment<ItemViewModel>() {
     }
 
     private fun refreshComplete() {
-        srl_refresh.isRefreshing = false
+        viewBinding.srlRefresh.isRefreshing = false
     }
 }

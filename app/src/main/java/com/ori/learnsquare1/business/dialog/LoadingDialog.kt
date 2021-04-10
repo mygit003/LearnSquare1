@@ -4,7 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import com.ori.learnsquare1.R
-import kotlinx.android.synthetic.main.dlg_loading.*
+import com.ori.learnsquare1.databinding.DlgLoadingBinding
 
 /**
  * 创建人: zhengpf
@@ -26,8 +26,9 @@ class LoadingDialog(context: Context) : Dialog(context, R.style.CustomDialog) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.dlg_loading)
-        tv_tip.text = tip
+        val binding: DlgLoadingBinding = DlgLoadingBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.tvTip.text = tip
         setCancelable(false)
         setCanceledOnTouchOutside(false)
     }

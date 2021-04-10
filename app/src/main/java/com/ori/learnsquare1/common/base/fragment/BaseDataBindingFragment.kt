@@ -10,7 +10,7 @@ import androidx.databinding.ViewDataBinding
 /**
  * 创建人: zhengpf
  * 修改时间: 2020/6/26 17:52
- * 类说明:
+ * 类说明: ViewDataBinding
  */
 abstract class BaseDataBindingFragment<DB: ViewDataBinding> : BaseFragment() {
 

@@ -7,13 +7,9 @@ import android.os.Build
 import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
-import androidx.annotation.RequiresApi
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.common.base.activity.BaseActivity
-import kotlinx.android.synthetic.main.act_splash.*
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -67,13 +63,6 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
             startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
             finish()
         }
-//        ivLogo.postDelayed(object : Runnable {
-//            override fun run() {
-//                startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
-//                finish()
-//            }
-//
-//        }, 1500)
     }
 
     override fun onRequestPermissionsResult(

@@ -12,7 +12,6 @@ import com.ori.learnsquare1.common.base.activity.BaseDataBindingVMActivity
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.PrefUtils
 import com.ori.learnsquare1.databinding.ActIntegrationBinding
-import kotlinx.android.synthetic.main.act_integration.*
 
 /**
  * 创建人: zhengpf
@@ -41,11 +40,11 @@ class IntegrationActivity : BaseDataBindingVMActivity<ActIntegrationBinding, Int
     }
 
     private fun initListener() {
-        iv_back.setOnClickListener {
+        viewDataBinding.ivBack.setOnClickListener {
             finish()
         }
 
-        iv_rule.setOnClickListener {
+        viewDataBinding.ivRule.setOnClickListener {
             // 查看积分规则
             toActivity(WebActivity::class.java, Bundle().apply {
                 putString(Constant.WebParam.PARAM_URL, Constant.WebUrl.INTEGRAL_RULE)
@@ -53,7 +52,7 @@ class IntegrationActivity : BaseDataBindingVMActivity<ActIntegrationBinding, Int
             })
         }
 
-        srl_refresh.apply {
+        viewDataBinding.srlRefresh.apply {
             setColorSchemeResources(R.color.textColorPrimary)
             setProgressBackgroundColorSchemeResource(R.color.bgColorPrimary)
             setOnRefreshListener {
@@ -78,8 +77,8 @@ class IntegrationActivity : BaseDataBindingVMActivity<ActIntegrationBinding, Int
             })
 
             integrationList.observe(this@IntegrationActivity, Observer {
-                srl_refresh.isRefreshing = false
-                ltv_loading.dismiss()
+                viewDataBinding.srlRefresh.isRefreshing = false
+                viewDataBinding.ltvLoading.dismiss()
                 if (null != it) {
                     if (!it.isEmpty()) {
                         recordList.addAll(it)
@@ -99,7 +98,7 @@ class IntegrationActivity : BaseDataBindingVMActivity<ActIntegrationBinding, Int
             })
         }
 
-        ltv_loading.loading()
+        viewDataBinding.ltvLoading.loading()
 
         //显示积分数据
         PrefUtils.getObject(Constant.SpKey.SP_INTEGRAL_INFO).let {
@@ -124,7 +123,7 @@ class IntegrationActivity : BaseDataBindingVMActivity<ActIntegrationBinding, Int
         if (null == mAdapter) {
             mAdapter = IntegrationRecordAdapter(recordList);
 
-            rv_list.adapter = mAdapter
+            viewDataBinding.rvList.adapter = mAdapter
 
             mAdapter?.setOnLoadMoreListener(object : BaseQuickAdapter.RequestLoadMoreListener{
                 override fun onLoadMoreRequested() {
@@ -134,7 +133,7 @@ class IntegrationActivity : BaseDataBindingVMActivity<ActIntegrationBinding, Int
                     }
                 }
 
-            }, rv_list)
+            }, viewDataBinding.rvList)
         }
     }
 }

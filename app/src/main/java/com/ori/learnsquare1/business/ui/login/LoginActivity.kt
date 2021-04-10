@@ -7,11 +7,11 @@ import com.ori.learnsquare1.business.dialog.LoadingDialog
 import com.ori.learnsquare1.business.entity.BusEvent
 import com.ori.learnsquare1.business.ui.registe.RegisteActivity
 import com.ori.learnsquare1.common.base.activity.BaseVMActivity
-import com.ori.learnsquare1.common.base.viewmodel.ViewModelLifecycle
+import com.ori.learnsquare1.common.base.activity.BaseViewBindingVMActivity
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.MsgType
 import com.ori.learnsquare1.common.util.PrefUtils
-import kotlinx.android.synthetic.main.act_login.*
+import com.ori.learnsquare1.databinding.ActLoginBinding
 import org.greenrobot.eventbus.EventBus
 
 /**
@@ -19,7 +19,7 @@ import org.greenrobot.eventbus.EventBus
  * 修改时间: 2020/7/19 11:38
  * 类说明:登录
  */
-class LoginActivity : BaseVMActivity<LoginViewModel>() {
+class LoginActivity : BaseViewBindingVMActivity<ActLoginBinding, LoginViewModel>() {
 
 
     private val loadingDialog by lazy { LoadingDialog(this) }
@@ -41,18 +41,18 @@ class LoginActivity : BaseVMActivity<LoginViewModel>() {
 
 
     private fun initListener() {
-        iv_back.setOnClickListener{
+        viewBinding.ivBack.setOnClickListener{
             finish()
         }
 
-        tv_go_registe.setOnClickListener {
+        viewBinding.tvGoRegiste.setOnClickListener {
             toActivity(RegisteActivity::class.java)
         }
 
 
-        btn_login.setOnClickListener {
-            var account = tiet_account.text.toString()
-            var pwd = tiet_pwd.text.toString()
+        viewBinding.btnLogin.setOnClickListener {
+            var account = viewBinding.tietAccount.text.toString()
+            var pwd = viewBinding.tietPwd.text.toString()
             if (TextUtils.isEmpty(account)) {
                 showToast("请输入登录名")
                 return@setOnClickListener

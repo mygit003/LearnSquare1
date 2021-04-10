@@ -2,8 +2,6 @@ package com.ori.learnsquare1.business.ui
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.ViewPropertyAnimator
@@ -19,9 +17,10 @@ import com.ori.learnsquare1.business.ui.home.HomeFragment
 import com.ori.learnsquare1.business.ui.navi.NaviFragment
 import com.ori.learnsquare1.business.ui.system.SystemFragment
 import com.ori.learnsquare1.business.ui.user.UserFragment
-import kotlinx.android.synthetic.main.act_home.*
+import com.ori.learnsquare1.common.base.activity.BaseViewBindingActivity
+import com.ori.learnsquare1.databinding.ActHomeBinding
 
-class HomeActivity : BaseActivity() {
+class HomeActivity : BaseViewBindingActivity<ActHomeBinding>() {
 
     private var previousPos: Int = 0
     private var fragments: MutableList<Fragment> = mutableListOf()
@@ -61,7 +60,7 @@ class HomeActivity : BaseActivity() {
     }
 
     private fun switchByBottomItem() {
-        bnv_menu.setOnNavigationItemSelectedListener { item: MenuItem ->
+        viewBinding.bnvMenu.setOnNavigationItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.item_home -> switchFragment(0)
                 R.id.item_subject -> switchFragment(1)
@@ -109,12 +108,12 @@ class HomeActivity : BaseActivity() {
         }
         if (bottomNavigationViewAnimtor != null) {
             bottomNavigationViewAnimtor?.cancel()
-            bnv_menu.clearAnimation()
+            viewBinding.bnvMenu.clearAnimation()
         }
         currentBottomNavagtionState = show
-        val targetY = if (show) 0F else bnv_menu.measuredHeight.toFloat()
+        val targetY = if (show) 0F else viewBinding.bnvMenu.measuredHeight.toFloat()
         //val duration = if (show) 225L else 175L
-        bottomNavigationViewAnimtor = bnv_menu.animate()
+        bottomNavigationViewAnimtor = viewBinding.bnvMenu.animate()
             .translationY(targetY)
             .setDuration(200L)
             .setInterpolator(AnimationUtils.LINEAR_OUT_SLOW_IN_INTERPOLATOR)

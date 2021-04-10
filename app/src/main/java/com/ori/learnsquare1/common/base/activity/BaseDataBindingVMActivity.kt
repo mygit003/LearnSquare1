@@ -8,7 +8,7 @@ import com.ori.learnsquare1.common.base.viewmodel.BaseViewModel
 /**
  * 创建人: zhengpf
  * 修改时间: 2020/6/26 17:34
- * 类说明:
+ * 类说明: ViewDataBinding + ViewModel
  */
 abstract class BaseDataBindingVMActivity<DB : ViewDataBinding, VM : BaseViewModel> : BaseActivity() {
 

@@ -7,17 +7,17 @@ import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
 import com.ori.learnsquare1.business.ui.web.WebActivity
-import com.ori.learnsquare1.common.base.fragment.BaseVMFragment
+import com.ori.learnsquare1.common.base.fragment.BaseViewBindingVMFragment
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.JsonUtil
-import kotlinx.android.synthetic.main.frg_lastest.*
+import com.ori.learnsquare1.databinding.FrgLastestBinding
 
 /**
  * 创建人: zhengpf
  * 修改时间: 2020/7/11 12:01
  * 类说明:首页--最新
  */
-class LastestFragment : BaseVMFragment<LastestViewModel>() {
+class LastestFragment : BaseViewBindingVMFragment<FrgLastestBinding, LastestViewModel>() {
 
 
     private var articleList = mutableListOf<ArticleValue.DatasBean>()
@@ -37,7 +37,7 @@ class LastestFragment : BaseVMFragment<LastestViewModel>() {
         bindListData()
 
         viewModel.articleList.observe(viewLifecycleOwner, Observer {
-            srl_refresh.isRefreshing = false
+            viewBinding.srlRefresh.isRefreshing = false
             it?.let { list ->
                 hasNextPage = list.size >= pageSize
                 articleList.addAll(list)
@@ -63,7 +63,7 @@ class LastestFragment : BaseVMFragment<LastestViewModel>() {
             }
         })
 
-        srl_refresh.apply {
+        viewBinding.srlRefresh.apply {
             setColorSchemeResources(R.color.textColorPrimary)
             setProgressBackgroundColorSchemeResource(R.color.bgColorPrimary)
             setOnRefreshListener {
@@ -91,7 +91,7 @@ class LastestFragment : BaseVMFragment<LastestViewModel>() {
         if (null == adapter) {
             adapter = ArticleAdapter(articleList)
 
-            rv_list.adapter = adapter
+            viewBinding.rvList.adapter = adapter
         }
 
         adapter?.run {
@@ -100,7 +100,7 @@ class LastestFragment : BaseVMFragment<LastestViewModel>() {
                 pageIndex++
                 viewModel.getLastestArticleList(pageIndex)
 
-            }, rv_list)
+            }, viewBinding.rvList)
 
             setOnItemChildClickListener { adapter, view, position ->
                 when (view.id) {

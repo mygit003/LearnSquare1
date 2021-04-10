@@ -18,7 +18,6 @@ import com.ori.learnsquare1.common.util.DateUtil
 import com.ori.learnsquare1.common.util.JsonUtil
 import com.ori.learnsquare1.common.util.PrefUtils
 import com.ori.learnsquare1.databinding.ActHistoryBinding
-import kotlinx.android.synthetic.main.act_history.*
 
 /**
  * 创建人: zhengpf

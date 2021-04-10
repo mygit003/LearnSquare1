@@ -5,25 +5,20 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.ori.learnsquare1.business.entity.ArticleValue
-import com.ori.learnsquare1.business.entity.BannerValue
 import com.ori.learnsquare1.business.entity.SystemValue
 import com.ori.learnsquare1.R
-import com.ori.learnsquare1.business.adapter.ArticleAdapter
-import com.ori.learnsquare1.business.adapter.FragmentListAdapter
 import com.ori.learnsquare1.business.adapter.FragmentTitleListAdapter
 import com.ori.learnsquare1.business.ui.system.item.ItemFragment
-import com.ori.learnsquare1.common.base.fragment.BaseFragment
 import com.ori.learnsquare1.common.base.fragment.BaseVMFragment
-import kotlinx.android.synthetic.main.frg_system.*
-import java.util.Collections.addAll
+import com.ori.learnsquare1.common.base.fragment.BaseViewBindingVMFragment
+import com.ori.learnsquare1.databinding.FrgSystemBinding
 
 /**
  * 创建人 zhengpf
  * 时间 2020/7/1
  * 类说明:体系
  */
-class SystemFragment : BaseVMFragment<SystemViewModel>() {
+class SystemFragment : BaseViewBindingVMFragment<FrgSystemBinding, SystemViewModel>() {
 
     private var fragments: MutableList<Fragment> = mutableListOf()
     private var titles: MutableList<String> = mutableListOf()
@@ -39,15 +34,15 @@ class SystemFragment : BaseVMFragment<SystemViewModel>() {
             tabList.observe(viewLifecycleOwner, Observer {
                 it?.let { list ->
                     itemList.addAll(list)
-                    iv_filter.visibility = View.VISIBLE
-                    tl_layout.visibility = View.VISIBLE
-                    vp_list.visibility = View.VISIBLE
+                    viewBinding.ivFilter.visibility = View.VISIBLE
+                    viewBinding.tlLayout.visibility = View.VISIBLE
+                    viewBinding.vpList.visibility = View.VISIBLE
                     showTabList()
                 }
             })
 
             loadingStatus.observe(viewLifecycleOwner, Observer {
-                cpb_loading.isVisible = it
+                viewBinding.cpbLoading.isVisible = it
             })
         }
     }
@@ -72,8 +67,8 @@ class SystemFragment : BaseVMFragment<SystemViewModel>() {
             fragments.add(fragment)
         }
 
-        vp_list.adapter = FragmentTitleListAdapter(fragments, titles,  childFragmentManager)
-        vp_list.offscreenPageLimit = 6
-        tl_layout.setupWithViewPager(vp_list)
+        viewBinding.vpList.adapter = FragmentTitleListAdapter(fragments, titles,  childFragmentManager)
+        viewBinding.vpList.offscreenPageLimit = 6
+        viewBinding.tlLayout.setupWithViewPager(viewBinding.vpList)
     }
 }

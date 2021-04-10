@@ -15,11 +15,11 @@ import com.ori.learnsquare1.business.ui.rank.RankActivity
 import com.ori.learnsquare1.business.ui.setting.SettingActivity
 import com.ori.learnsquare1.business.ui.shared.SharedActivity
 import com.ori.learnsquare1.business.util.AccountStatusManage
-import com.ori.learnsquare1.common.base.fragment.BaseVMFragment
+import com.ori.learnsquare1.common.base.fragment.BaseViewBindingVMFragment
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.MsgType
 import com.ori.learnsquare1.common.util.PrefUtils
-import kotlinx.android.synthetic.main.frg_user.*
+import com.ori.learnsquare1.databinding.FrgUserBinding
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 
@@ -28,7 +28,7 @@ import org.greenrobot.eventbus.Subscribe
  * 时间 2020/7/1
  * 类说明:我的
  */
-class UserFragment : BaseVMFragment<UserViewModel>(), View.OnClickListener {
+class UserFragment : BaseViewBindingVMFragment<FrgUserBinding, UserViewModel>(), View.OnClickListener {
 
 
 
@@ -39,24 +39,24 @@ class UserFragment : BaseVMFragment<UserViewModel>(), View.OnClickListener {
 
     override fun initView() {
         EventBus.getDefault().register(this)
-        cl_user_info.setOnClickListener(this)
-        ll_integration.setOnClickListener(this)
-        ll_rank.setOnClickListener(this)
-        ll_share.setOnClickListener(this)
-        ll_collect.setOnClickListener(this)
-        ll_history.setOnClickListener(this)
-        ll_website.setOnClickListener(this)
-        ll_about.setOnClickListener(this)
-        ll_set.setOnClickListener(this)
+        viewBinding.clUserInfo.setOnClickListener(this)
+        viewBinding.llIntegration.setOnClickListener(this)
+        viewBinding.llRank.setOnClickListener(this)
+        viewBinding.llShare.setOnClickListener(this)
+        viewBinding.llCollect.setOnClickListener(this)
+        viewBinding.llHistory.setOnClickListener(this)
+        viewBinding.llWebsite.setOnClickListener(this)
+        viewBinding.llAbout.setOnClickListener(this)
+        viewBinding.llSet.setOnClickListener(this)
 
         viewModel.apply {
             userAccountValue.observe(viewLifecycleOwner, Observer {
                 it?.let { user ->
-                    tv_user_name.text = user.username
-                    tv_user_id.text = user.userId
-                    tv_login_registe.visibility = View.GONE
-                    tv_user_name.visibility = View.VISIBLE
-                    tv_user_id.visibility = View.VISIBLE
+                    viewBinding.tvUserName.text = user.username
+                    viewBinding.tvUserId.text = user.userId
+                    viewBinding.tvLoginRegiste.visibility = View.GONE
+                    viewBinding.tvUserName.visibility = View.VISIBLE
+                    viewBinding.tvUserId.visibility = View.VISIBLE
                     //缓存积分信息
                     PrefUtils.setObject(Constant.SpKey.SP_INTEGRAL_INFO, it)
                 }
@@ -72,20 +72,20 @@ class UserFragment : BaseVMFragment<UserViewModel>(), View.OnClickListener {
         if (null != (PrefUtils.getObject(Constant.SpKey.SP_USER_INFO))) {
             val userValue = PrefUtils.getObject(Constant.SpKey.SP_USER_INFO) as UserValue
             if (null != userValue) {
-                tv_user_name.text = userValue.username
-                tv_user_id.text = userValue.id
-                tv_login_registe.visibility = View.GONE
-                tv_user_name.visibility = View.VISIBLE
-                tv_user_id.visibility = View.VISIBLE
+                viewBinding.tvUserName.text = userValue.username
+                viewBinding.tvUserId.text = userValue.id
+                viewBinding.tvLoginRegiste.visibility = View.GONE
+                viewBinding.tvUserName.visibility = View.VISIBLE
+                viewBinding.tvUserId.visibility = View.VISIBLE
             }else {
-                tv_login_registe.visibility = View.VISIBLE
-                tv_user_name.visibility = View.GONE
-                tv_user_id.visibility = View.GONE
+                viewBinding.tvLoginRegiste.visibility = View.VISIBLE
+                viewBinding.tvUserName.visibility = View.GONE
+                viewBinding.tvUserId.visibility = View.GONE
             }
         }else {
-            tv_login_registe.visibility = View.VISIBLE
-            tv_user_name.visibility = View.GONE
-            tv_user_id.visibility = View.GONE
+            viewBinding.tvLoginRegiste.visibility = View.VISIBLE
+            viewBinding.tvUserName.visibility = View.GONE
+            viewBinding.tvUserId.visibility = View.GONE
         }
     }
     override fun initData() {

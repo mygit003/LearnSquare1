@@ -12,7 +12,6 @@ import com.ori.learnsquare1.common.base.activity.BaseDataBindingVMActivity
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.JsonUtil
 import com.ori.learnsquare1.databinding.ActSharedBinding
-import kotlinx.android.synthetic.main.act_shared.*
 
 /**
  * 创建人: zhengpf

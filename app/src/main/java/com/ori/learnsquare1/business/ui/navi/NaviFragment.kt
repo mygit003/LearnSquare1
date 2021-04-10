@@ -14,17 +14,17 @@ import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.business.entity.NavigationValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.ui.web.WebActivity
-import com.ori.learnsquare1.common.base.fragment.BaseVMFragment
+import com.ori.learnsquare1.common.base.fragment.BaseViewBindingVMFragment
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.JsonUtil
-import kotlinx.android.synthetic.main.frg_navi.*
+import com.ori.learnsquare1.databinding.FrgNaviBinding
 
 /**
  * 创建人 zhengpf
  * 时间 2020/7/1
  * 类说明:导航
  */
-class NaviFragment : BaseVMFragment<NaviViewModel>() {
+class NaviFragment : BaseViewBindingVMFragment<FrgNaviBinding, NaviViewModel>() {
 
     private val items: MutableList<NavigationValue> = mutableListOf()
     private var mAdapter: BaseQuickAdapter<NavigationValue, BaseViewHolder>? = null
@@ -38,17 +38,17 @@ class NaviFragment : BaseVMFragment<NaviViewModel>() {
     override fun initView() {
         viewModel.run {
             naviItems.observe(viewLifecycleOwner, Observer {
-                ltv_loading.dismiss()
+                viewBinding.ltvLoading.dismiss()
                 it?.let {
                     items.addAll(it)
-                    tvFloatTitle.visibility = View.VISIBLE
-                    tvFloatTitle.text = items[0].name
+                    viewBinding.tvFloatTitle.visibility = View.VISIBLE
+                    viewBinding.tvFloatTitle.text = items[0].name
                 }
                 showItemData()
             })
         }
 
-        rv_list.setOnScrollChangeListener(object : View.OnScrollChangeListener{
+        viewBinding.rvList.setOnScrollChangeListener(object : View.OnScrollChangeListener{
             override fun onScrollChange(
                 v: View?,
                 scrollX: Int,
@@ -57,22 +57,22 @@ class NaviFragment : BaseVMFragment<NaviViewModel>() {
                 oldScrollY: Int
             ) {
                 if (scrollX < oldScrollY) {
-                    tvFloatTitle.text = mAdapter?.getItem(currentPosition)?.name
+                    viewBinding.tvFloatTitle.text = mAdapter?.getItem(currentPosition)?.name
                 }
 
-                val lm = rv_list.layoutManager as LinearLayoutManager
+                val lm = viewBinding.rvList.layoutManager as LinearLayoutManager
                 //获取下一个item rootView
                 val nextItemView = lm.findViewByPosition(currentPosition + 1)
                 if (null != nextItemView) {
-                    tvFloatTitle.y = if (nextItemView.top < tvFloatTitle.measuredHeight) {
-                        (nextItemView.top - tvFloatTitle.measuredHeight).toFloat()
+                    viewBinding.tvFloatTitle.y = if (nextItemView.top < viewBinding.tvFloatTitle.measuredHeight) {
+                        (nextItemView.top - viewBinding.tvFloatTitle.measuredHeight).toFloat()
                     } else {
                         0f
                     }
                 }
                 currentPosition = lm.findFirstVisibleItemPosition()
                 if (scrollY > oldScrollY) {
-                    tvFloatTitle.text = mAdapter?.getItem(currentPosition)?.name
+                    viewBinding.tvFloatTitle.text = mAdapter?.getItem(currentPosition)?.name
                 }
             }
 
@@ -80,7 +80,7 @@ class NaviFragment : BaseVMFragment<NaviViewModel>() {
     }
 
     override fun initData() {
-        ltv_loading.loading()
+        viewBinding.ltvLoading.loading()
         viewModel.getNavigationItem()
 
     }
@@ -98,7 +98,7 @@ class NaviFragment : BaseVMFragment<NaviViewModel>() {
                 }
 
             }
-            rv_list.adapter = mAdapter
+            viewBinding.rvList.adapter = mAdapter
         }else {
             mAdapter?.setNewData(items)
         }

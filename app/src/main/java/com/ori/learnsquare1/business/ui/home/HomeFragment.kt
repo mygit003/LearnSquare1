@@ -1,6 +1,5 @@
 package com.ori.learnsquare1.business.ui.home
 
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -16,10 +15,10 @@ import com.ori.learnsquare1.business.ui.home.project.ProjectFragment
 import com.ori.learnsquare1.business.ui.home.square.SquareFragment
 import com.ori.learnsquare1.business.ui.home.wechat.WeChatFragment
 import com.ori.learnsquare1.business.util.BannerUtil
-import com.ori.learnsquare1.common.base.fragment.BaseFragment
 import com.ori.learnsquare1.common.base.fragment.BaseVMFragment
+import com.ori.learnsquare1.common.base.fragment.BaseViewBindingVMFragment
 import com.ori.learnsquare1.common.listener.OnTabClickListener
-import kotlinx.android.synthetic.main.frg_home.*
+import com.ori.learnsquare1.databinding.FrgHomeBinding
 import net.lucode.hackware.magicindicator.ViewPagerHelper
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 
@@ -28,7 +27,7 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigat
  * 修改时间: 2020/6/27 18:18
  * 类说明:首页
  */
-class HomeFragment : BaseVMFragment<HomeViewModel>() {
+class HomeFragment : BaseViewBindingVMFragment<FrgHomeBinding, HomeViewModel>() {
 
     private var fragments: MutableList<Fragment> = mutableListOf()
     private var bannerList: MutableList<BannerValue> = mutableListOf()
@@ -43,13 +42,13 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
         initItemFragment()
 
         //监听页面滑动，隐藏底部导航栏
-        abl_layout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+        viewBinding.ablLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             if (activity is HomeActivity && offSet != verticalOffset) {
                 (activity as HomeActivity).animateBottomNavigationView(verticalOffset > offSet)
                 offSet = verticalOffset
             }
 
-            val bannerHeight = banner.measuredHeight
+            val bannerHeight = viewBinding.banner.measuredHeight
 //            Log.d(TAG, "offSet:${verticalOffset}")
 //            Log.d(TAG, "barHeight=${bannerHeight}")
             val scrollY = Math.abs(verticalOffset)
@@ -63,16 +62,16 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
 //            Log.d(TAG, "alpha=${alpha}")
 //            ll_search.alpha = alpha
             if (scrollY >= bannerHeight) {
-                ll_search.visibility = View.VISIBLE
+                viewBinding.llSearch.visibility = View.VISIBLE
             }else {
-                ll_search.visibility = View.GONE
+                viewBinding.llSearch.visibility = View.GONE
             }
 
         })
 
         //监听轮播图片数据变化更新UI
         viewModel.bannerList.observe(viewLifecycleOwner, Observer {
-            ltv_loading.dismiss()
+            viewBinding.ltvLoading.dismiss()
             if (it.isNotEmpty()) {
                 bannerList.addAll(it)
             }
@@ -80,12 +79,12 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
             bannerList.forEach {
                 urlList.add(it.imagePath!!)
             }
-            BannerUtil.setBannerAttrs(activity, banner, urlList)
+            BannerUtil.setBannerAttrs(activity, viewBinding.banner, urlList)
         })
     }
 
     override fun initData() {
-        ltv_loading.loading()
+        viewBinding.ltvLoading.loading()
         //初始化加载轮播图数据
         viewModel.getBannerData()
     }
@@ -104,20 +103,20 @@ class HomeFragment : BaseVMFragment<HomeViewModel>() {
         fragments.add(ProjectFragment())
         fragments.add(WeChatFragment())
 
-        vp_list.offscreenPageLimit = fragments.size
-        vp_list.adapter = FragmentListAdapter(fragments, childFragmentManager)
+        viewBinding.vpList.offscreenPageLimit = fragments.size
+        viewBinding.vpList.adapter = FragmentListAdapter(fragments, childFragmentManager)
 
         val commonNavigator = CommonNavigator(context)
         val navigatorAdapter = TabAdapter(tagList)
 
         commonNavigator.adapter = navigatorAdapter
-        mi_indicator.navigator = commonNavigator;
+        viewBinding.miIndicator.navigator = commonNavigator;
         navigatorAdapter.setOnTabClickListenr(object : OnTabClickListener {
             override fun onTabClick(view: View, index: Int) {
-                vp_list.currentItem = index
+                viewBinding.vpList.currentItem = index
             }
         })
 
-        ViewPagerHelper.bind(mi_indicator, vp_list)
+        ViewPagerHelper.bind(viewBinding.miIndicator, viewBinding.vpList)
     }
 }

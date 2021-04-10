@@ -9,17 +9,17 @@ import com.donkingliang.labels.LabelsView
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.entity.TagItemValue
 import com.ori.learnsquare1.business.ui.web.WebActivity
-import com.ori.learnsquare1.common.base.fragment.BaseVMFragment
+import com.ori.learnsquare1.common.base.fragment.BaseViewBindingVMFragment
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.JsonUtil
-import kotlinx.android.synthetic.main.frg_discovery.*
+import com.ori.learnsquare1.databinding.FrgDiscoveryBinding
 
 /**
  * 创建人 zhengpf
  * 时间 2020/7/1
  * 类说明:发现
  */
-class DiscoveryFragment : BaseVMFragment<DiscoveryViewModel>() {
+class DiscoveryFragment : BaseViewBindingVMFragment<FrgDiscoveryBinding, DiscoveryViewModel>() {
 
 
 
@@ -77,7 +77,7 @@ class DiscoveryFragment : BaseVMFragment<DiscoveryViewModel>() {
     }
 
     private fun showTagList() {
-        ltv_loading.dismiss()
+        viewBinding.ltvLoading.dismiss()
         if (null == adapter) {
             adapter = object : BaseQuickAdapter<TagItemValue, BaseViewHolder>(R.layout.item_tag_layout, tagList) {
                 override fun convert(helper: BaseViewHolder, item: TagItemValue) {
@@ -86,7 +86,7 @@ class DiscoveryFragment : BaseVMFragment<DiscoveryViewModel>() {
 
             }
 
-            rv_list.adapter = adapter
+            viewBinding.rvList.adapter = adapter
         }else {
             adapter?.setNewData(tagList)
         }
@@ -124,7 +124,7 @@ class DiscoveryFragment : BaseVMFragment<DiscoveryViewModel>() {
     }
 
     override fun initData() {
-        ltv_loading.loading()
+        viewBinding.ltvLoading.loading()
         viewModel.getSearchItem()
     }
 

@@ -8,20 +8,20 @@ import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.business.entity.UserValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.db.entity.BrowseHistoryValue
-import com.ori.learnsquare1.common.base.activity.BaseActivity
 import com.ori.learnsquare1.common.base.activity.BaseVMActivity
+import com.ori.learnsquare1.common.base.activity.BaseViewBindingVMActivity
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.DateUtil
 import com.ori.learnsquare1.common.util.JsonUtil
 import com.ori.learnsquare1.common.util.PrefUtils
-import kotlinx.android.synthetic.main.act_web.*
+import com.ori.learnsquare1.databinding.ActWebBinding
 
 /**
  * 创建人: zhengpf
  * 修改时间: 2020/7/18 11:37
  * 类说明:
  */
-class WebActivity : BaseVMActivity<WebViewModel>() {
+class WebActivity : BaseViewBindingVMActivity<ActWebBinding, WebViewModel>() {
 
     private var webUrl: String = ""
     private var webTitle: String = ""
@@ -44,7 +44,7 @@ class WebActivity : BaseVMActivity<WebViewModel>() {
             }
         }
 
-        iv_back.setOnClickListener {
+        viewBinding.ivBack.setOnClickListener {
             finish()
         }
 
@@ -53,23 +53,23 @@ class WebActivity : BaseVMActivity<WebViewModel>() {
             saveBrowseRecordData()
         }
 
-        tv_title.text = Html.fromHtml(webTitle)
+        viewBinding.tvTitle.text = Html.fromHtml(webTitle)
         initWebView()
     }
 
 
     private fun initWebView() {
-        val setting: WebSettings = wv_view.settings
+        val setting: WebSettings = viewBinding.wvView.settings
         setting.javaScriptEnabled = true
         setting.cacheMode = WebSettings.LOAD_NO_CACHE
 
         //自适应屏幕
-        wv_view.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        wv_view.settings.loadWithOverviewMode = true
+        viewBinding.wvView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        viewBinding.wvView.settings.loadWithOverviewMode = true
 
 
         //如果不设置WebViewClient，请求会跳转系统浏览器
-        wv_view.webViewClient = object : WebViewClient() {
+        viewBinding.wvView.webViewClient = object : WebViewClient() {
 
             override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
                 //返回false，意味着请求过程里，不管有多少次的跳转请求（即新的请求地址）
@@ -77,21 +77,21 @@ class WebActivity : BaseVMActivity<WebViewModel>() {
                 return false
             }
         }
-        ltv_loading.loading()
-        wv_view.loadUrl(webUrl)
-        wv_view.webChromeClient = object : WebChromeClient() {
+        viewBinding.ltvLoading.loading()
+        viewBinding.wvView.loadUrl(webUrl)
+        viewBinding.wvView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)
-                if (newProgress == 100) ltv_loading.dismiss()
+                if (newProgress == 100) viewBinding.ltvLoading.dismiss()
             }
         }
     }
 
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK && wv_view.canGoBack()) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && viewBinding.wvView.canGoBack()) {
             //返回上个页面
-            wv_view.goBack()
+            viewBinding.wvView.goBack()
             return true
         }
         return super.onKeyDown(keyCode, event)

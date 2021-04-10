@@ -3,17 +3,15 @@ package com.ori.learnsquare1.business.ui.registe
 import android.text.TextUtils
 import androidx.lifecycle.Observer
 import com.ori.learnsquare1.R
-import com.ori.learnsquare1.common.base.activity.BaseVMActivity
-import kotlinx.android.synthetic.main.act_registe.*
-import kotlinx.android.synthetic.main.act_shared.*
-import kotlinx.android.synthetic.main.act_shared.iv_back
+import com.ori.learnsquare1.common.base.activity.BaseViewBindingVMActivity
+import com.ori.learnsquare1.databinding.ActRegisteBinding
 
 /**
  * 创建人: zhengpf
  * 修改时间: 2020/7/19 11:38
  * 类说明:注册
  */
-class RegisteActivity : BaseVMActivity<RegisteViewModel>() {
+class RegisteActivity : BaseViewBindingVMActivity<ActRegisteBinding, RegisteViewModel>() {
 
 
 
@@ -31,9 +29,9 @@ class RegisteActivity : BaseVMActivity<RegisteViewModel>() {
 
 
     private fun initUI() {
-        iv_back.setOnClickListener { finish() }
+        viewBinding.ivBack.setOnClickListener { finish() }
 
-        btn_registe.setOnClickListener {
+        viewBinding.btnRegiste.setOnClickListener {
             doRegiste()
         }
 
@@ -52,9 +50,9 @@ class RegisteActivity : BaseVMActivity<RegisteViewModel>() {
     }
 
     private fun doRegiste() {
-        val account = tiet_account.text.toString()
-        val pwd = tiet_pwd.text.toString()
-        val repwd = tiet_repwd.text.toString()
+        val account = viewBinding.tietAccount.text.toString()
+        val pwd = viewBinding.tietPwd.text.toString()
+        val repwd = viewBinding.tietRepwd.text.toString()
 
         if (TextUtils.isEmpty(account)) {
             showToast("请输入用户名")

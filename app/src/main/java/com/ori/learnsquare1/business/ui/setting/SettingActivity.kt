@@ -1,13 +1,11 @@
 package com.ori.learnsquare1.business.ui.setting
 
 import android.util.Log
-import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.Observer
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.common.base.activity.BaseDataBindingVMActivity
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.PrefUtils
-import com.ori.learnsquare1.common.util.StatusUtils
 import com.ori.learnsquare1.common.util.setNightMode
 import com.ori.learnsquare1.databinding.ActSettingBinding
 

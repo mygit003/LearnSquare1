@@ -10,7 +10,6 @@ import com.ori.learnsquare1.common.base.activity.BaseDataBindingVMActivity
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.PrefUtils
 import com.ori.learnsquare1.databinding.ActRankBinding
-import kotlinx.android.synthetic.main.act_rank.*
 
 /**
  * 创建人: zhengpf
@@ -42,7 +41,7 @@ class RankActivity : BaseDataBindingVMActivity<ActRankBinding, RankViewModel>() 
 
 
     private fun initUI() {
-        iv_back.setOnClickListener { finish() }
+        viewDataBinding.ivBack.setOnClickListener { finish() }
 
         viewModel.apply {
             rankList.observe(this@RankActivity, Observer {
@@ -72,7 +71,7 @@ class RankActivity : BaseDataBindingVMActivity<ActRankBinding, RankViewModel>() 
 
 
     private fun initData() {
-        ltv_loading.loading()
+        viewDataBinding.ltvLoading.loading()
         PrefUtils.getObject(Constant.SpKey.SP_INTEGRAL_INFO)?.let {
             account = it as UserAccountValue
         }
