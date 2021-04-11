@@ -8,7 +8,6 @@ import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.business.entity.UserValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.db.entity.BrowseHistoryValue
-import com.ori.learnsquare1.common.base.activity.BaseVMActivity
 import com.ori.learnsquare1.common.base.activity.BaseViewBindingVMActivity
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.DateUtil

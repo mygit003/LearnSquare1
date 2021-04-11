@@ -89,6 +89,12 @@
 -dontnote com.google.android.material.**
 -dontwarn androidx.**
 
+# ViewBinding 使用了反射获取inflate方法，故要配置反射调用方法禁止混淆
+-keepclassmembers class * implements androidx.viewbinding.ViewBinding {
+  public static * inflate(android.view.LayoutInflater);
+}
+
+
 # 保留R下面的资源
 -keep class **.R$* {*;}
 
@@ -161,7 +167,11 @@
 #}
 
 ####################需要保留的公共部分 end#########################
-
+# BaseResponse不被混淆
+-keepclasseswithmembers class com.ori.learnsquare1.common.base.http.BaseResponse {
+    <fields>;
+    <methods>;
+}
 
 # entity包下所有的类不混淆
 -keep class com.ori.learnsquare1.business.entity.* {*;}

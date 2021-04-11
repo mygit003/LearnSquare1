@@ -2,10 +2,12 @@ package com.ori.learnsquare1.common.base.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ori.learnsquare1.common.util.ActivityManage
+import com.ori.learnsquare1.common.util.GlideApp
 import com.ori.learnsquare1.common.util.StatusUtils
 
 /**
@@ -83,5 +85,23 @@ abstract class BaseActivity : AppCompatActivity() {
         Toast.makeText(this, "" + tip, Toast.LENGTH_SHORT).show()
     }
 
+
+    override fun onTrimMemory(level: Int) {
+        Log.w(TAG, "onTrimMemory:$level")
+        super.onTrimMemory(level)
+        if (level >= TRIM_MEMORY_MODERATE) {
+            GlideApp.get(this).clearMemory()
+        }
+        GlideApp.get(this).trimMemory(level)
+    }
+
+
+    override fun onLowMemory() {
+        Log.w(TAG, "onLowMemory:")
+        super.onLowMemory()
+        //内存过低时，清理glide缓存
+        GlideApp.get(this).clearMemory()
+        GlideApp.get(this).clearDiskCache()
+    }
 
 }

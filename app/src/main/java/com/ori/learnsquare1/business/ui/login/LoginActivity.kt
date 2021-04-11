@@ -6,7 +6,6 @@ import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.dialog.LoadingDialog
 import com.ori.learnsquare1.business.entity.BusEvent
 import com.ori.learnsquare1.business.ui.registe.RegisteActivity
-import com.ori.learnsquare1.common.base.activity.BaseVMActivity
 import com.ori.learnsquare1.common.base.activity.BaseViewBindingVMActivity
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.MsgType

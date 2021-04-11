@@ -5,6 +5,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.ori.learnsquare1.R
+import com.ori.learnsquare1.business.App
 import com.ori.learnsquare1.common.ui.GlideRoundTransform
 
 /**
@@ -20,7 +21,7 @@ object ImageUtil {
      */
     fun load(imageView: ImageView, url:String?){
         url?.let {
-            Glide.with(imageView.context)
+            GlideApp.with(imageView.context)
                 .load(url)
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
@@ -35,7 +36,7 @@ object ImageUtil {
      */
     fun loadRadius(imageView: ImageView, url:String?, round:Int){
         url?.let {
-            Glide.with(imageView.context)
+            GlideApp.with(imageView.context)
                 .load(url)
                 .centerCrop()
                 .transition(DrawableTransitionOptions.withCrossFade())
@@ -50,7 +51,7 @@ object ImageUtil {
      * 加载圆形图片
      */
     fun loadRound(imageView: ImageView, url:String, round:Int){
-        Glide.with(imageView.context)
+        GlideApp.with(imageView.context)
             .load(url)
             .centerCrop()
             .transition(DrawableTransitionOptions.withCrossFade())
@@ -63,7 +64,7 @@ object ImageUtil {
      * 清除缓存
      */
     fun clearCache(){
-//        Glide.get(BaseApplication.getContext()).clearMemory()
+        //GlideApp.get(App.getApp()).clearMemory()
         System.gc()
     }
 
