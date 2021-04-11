@@ -7,6 +7,7 @@ package com.ori.learnsquare1.common.util
  */
 object Constant {
 
+    const val DEBUG: Boolean = false
 
     const val BASE_URL = "https://www.wanandroid.com"
 

@@ -1,6 +1,7 @@
 package com.ori.learnsquare1.business
 
 import android.app.Application
+import com.ori.learnsquare1.common.util.AppCrashHandler
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.PrefUtils
 import com.ori.learnsquare1.common.util.setNightMode
@@ -25,6 +26,9 @@ class App : Application() {
         super.onCreate()
         app = this
         //setDayNightMode()
+        if (!Constant.DEBUG) {
+            AppCrashHandler.getInstance().init(this)
+        }
     }
 
 
