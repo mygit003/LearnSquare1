@@ -3,31 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#DEDEDE"
     android:gravity="center_horizontal">
 
-    <ImageView
-        android:id="@+id/ivLogo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="170dp"
-        android:src="@mipmap/ic_android"
-        android:visibility="visible"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/ivLogo"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_marginTop="170dp"-->
+<!--        android:src="@mipmap/ic_android"-->
+<!--        android:visibility="visible"/>-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:text="WanAndroid"
-        android:textColor="@color/textColorPrimary"
-        android:textSize="30sp" />
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="6dp"-->
+<!--        android:text="WanAndroid"-->
+<!--        android:textColor="@color/textColorPrimary"-->
+<!--        android:textSize="30sp" />-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="一个专业的Android社区"
-        android:textColor="@color/textColorSecondary"
-        android:textSize="12sp" />
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="4dp"-->
+<!--        android:text="一个专业的Android社区"-->
+<!--        android:textColor="@color/textColorSecondary"-->
+<!--        android:textSize="12sp" />-->
 
 </LinearLayout>

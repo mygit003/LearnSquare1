@@ -49,11 +49,11 @@ class SplashActivity : BaseActivity(), EasyPermissions.PermissionCallbacks {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
         )
-        if (EasyPermissions.hasPermissions(this, *perms)) {
+        if (EasyPermissions.hasPermissions(this@SplashActivity, *perms)) {
             //进行页面跳转
             startMain()
         } else {
-            EasyPermissions.requestPermissions(this, "请求运行时权限", permission_request_code, *perms)
+            EasyPermissions.requestPermissions(this@SplashActivity, "请求运行时权限", permission_request_code, *perms)
         }
     }
 

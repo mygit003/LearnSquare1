@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -25,18 +25,18 @@
 
 
     <!--android:Theme.NoTitleBar-->
-    <style name="AppTheme" parent="BaseAppTheme">
+    <style name="AppTheme.Activity" parent="AppTheme">
         <item name="android:windowFullscreen">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowAnimationStyle">@style/ActivitySwitch</item>
     </style>
 
-    <style name="SplashTheme" parent="BaseAppTheme">
+    <style name="AppTheme.Splash" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowBackground">@null</item>
+<!--        <item name="android:windowNoTitle">true</item>-->
+<!--        <item name="android:windowIsTranslucent">true</item>-->
+        <item name="android:windowBackground">@drawable/launch_background</item>
         <item name="android:windowDisablePreview">true</item>
     </style>
 

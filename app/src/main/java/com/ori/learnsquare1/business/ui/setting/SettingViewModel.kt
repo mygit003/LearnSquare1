@@ -2,7 +2,6 @@ package com.ori.learnsquare1.business.ui.setting
 
 import androidx.databinding.Bindable
 import androidx.databinding.Observable
-import androidx.databinding.ObservableInt
 import androidx.databinding.PropertyChangeRegistry
 import androidx.lifecycle.MutableLiveData
 import com.ori.learnsquare1.business.App

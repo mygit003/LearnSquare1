@@ -16,8 +16,7 @@ class SystemViewModel : BaseViewModel() {
 
     var tabList = MutableLiveData<MutableList<SystemValue>>()
     var articleList = MutableLiveData<MutableList<ArticleValue.DatasBean>>()
-    val loadingStatus = MutableLiveData<Boolean>()
-    val reloadStatus = MutableLiveData<Boolean>()
+
 
     fun getTabList() {
         loadingStatus.value = true

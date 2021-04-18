@@ -1,10 +1,7 @@
 package com.ori.learnsquare1.common.base.viewmodel
 
 import android.util.Log
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.google.gson.JsonParseException
 import com.ori.learnsquare1.business.App
 import com.ori.learnsquare1.business.ui.user.UserRepository
@@ -32,10 +29,13 @@ typealias Cancel = suspend (e: Exception) -> Unit
 
 abstract class BaseViewModel : ViewModel(), ViewModelLifecycle {
 
-
     private val TAG = this.javaClass.simpleName;
 
     private lateinit var lifcycleOwner: LifecycleOwner
+
+    protected val loadingStatus = MutableLiveData<Boolean>()
+    protected val reloadStatus = MutableLiveData<Boolean>()
+
     protected val userRepository by lazy { UserRepository() }
 
 
