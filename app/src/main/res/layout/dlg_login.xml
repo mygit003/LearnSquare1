@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bgColorPrimary"
+    android:orientation="vertical">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?actionBarItemBackground"
+            android:padding="12dp"
+            android:src="@drawable/ic_close_black_24dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/login_txt"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_normal" />
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:drawableTop="@mipmap/ic_android"
+            android:text="Wandroid"
+            android:textAllCaps="true"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_normal" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginHorizontal="@dimen/item_pdding"
+            android:hint="@string/uname_txt">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiet_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:textColor="@color/textColorPrimary"
+                android:textColorHighlight="@color/textColorPrimary"
+                android:textColorHint="@color/textColorSecondary" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/item_pdding"
+            android:layout_marginHorizontal="@dimen/item_pdding"
+            android:hint="@string/pwd_txt"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/textColorPrimary">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tiet_pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:textColor="@color/textColorPrimary"
+                android:textColorHighlight="@color/textColorPrimary"
+                android:textColorHint="@color/textColorSecondary" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginHorizontal="@dimen/item_pdding"
+            android:textAllCaps="false"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/font_size_smaller"
+            android:text="@string/login_txt"
+            android:background="@drawable/btn_circle"/>
+
+        <TextView
+            android:id="@+id/tv_go_registe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/go_registe_txt"
+            android:background="?selectableItemBackground"
+            android:textSize="@dimen/font_size_smaller"
+            android:textColor="@color/textColorPrimary"
+            android:layout_marginTop="12dp"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -5,6 +5,7 @@ import android.view.View
 import androidx.lifecycle.Observer
 import com.ori.learnsquare1.business.entity.UserValue
 import com.ori.learnsquare1.R
+import com.ori.learnsquare1.business.dialog.LoginDialog
 import com.ori.learnsquare1.business.entity.BusEvent
 import com.ori.learnsquare1.business.ui.web.WebActivity
 import com.ori.learnsquare1.business.ui.collect.CollectActivity
@@ -107,7 +108,9 @@ class UserFragment : BaseViewBindingVMFragment<FrgUserBinding, UserViewModel>(),
                 //登录/注册
                 if (!AccountStatusManage.isLogin()) {
                 }
-                toActivity(LoginActivity::class.java)
+                //toActivity(LoginActivity::class.java)
+                val dialog = activity?.let { LoginDialog(it) }
+                dialog?.show()
             }
             R.id.ll_integration -> {
                 //积分

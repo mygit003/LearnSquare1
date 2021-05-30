@@ -1,12 +1,13 @@
-package com.ori.learnsquare1.common.base.viewmodel
+package com.ori.learnsquare1.common.util
 
-import android.util.Log
-import androidx.lifecycle.*
+import android.content.Context
+import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.google.gson.JsonParseException
 import com.ori.learnsquare1.business.App
-import com.ori.learnsquare1.business.ui.user.UserRepository
+import com.ori.learnsquare1.business.db.DBHelper
 import com.ori.learnsquare1.common.base.http.ApiException
-import com.ori.learnsquare1.common.base.http.BaseResponse
 import com.ori.learnsquare1.common.ext.showToast
 import kotlinx.coroutines.*
 import org.json.JSONException
@@ -19,28 +20,44 @@ import java.text.ParseException
 
 /**
  * 创建人: zhengpf
- * 修改时间: 2020/6/26 14:42
+ * 修改时间: 2021/5/29 16:14
  * 类说明:
  */
+
 typealias Block<T> = suspend () -> T
 typealias Error = suspend (e: Exception) -> Unit
 typealias Cancel = suspend (e: Exception) -> Unit
 
 
-abstract class BaseViewModel : ViewModel(), ViewModelLifecycle {
-
-    private val TAG = this.javaClass.simpleName;
-
-    private lateinit var lifcycleOwner: LifecycleOwner
-
-    val loadingStatus = MutableLiveData<Boolean>()
-    protected val reloadStatus = MutableLiveData<Boolean>()
-
-    protected val userRepository by lazy { UserRepository() }
+class CoroutineScopeUtil private constructor() {
 
 
-    protected fun launch(block: Block<Unit>, error: Error? = null, cancel: Cancel? = null): Job {
-        return viewModelScope.launch {
+    companion object {
+        @Volatile
+        private var instance: CoroutineScopeUtil? = null
+
+        fun getInstance() : CoroutineScopeUtil =
+            instance ?: synchronized(this) {
+                instance ?: CoroutineScopeUtil().also { instance = it }
+            }
+    }
+
+    private lateinit var coroutineScope: CoroutineScope
+
+    fun init(scope: CoroutineScope) {
+        coroutineScope = scope
+    }
+
+    fun cancel() {
+        if (::coroutineScope.isInitialized) {
+            if (null != coroutineScope && coroutineScope.isActive) {
+                coroutineScope.cancel()
+            }
+        }
+    }
+
+    fun launch(block: Block<Unit>, error: Error? = null, cancel: Cancel? = null): Job {
+        return coroutineScope.launch {
             try {
                 block.invoke()
             } catch (e: Exception) {
@@ -54,18 +71,6 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle {
                     }
                 }
             }
-        }
-    }
-
-
-    protected fun <T> async(block: Block<T>): Deferred<T> {
-        return viewModelScope.async { block.invoke() }
-    }
-
-
-    protected fun cancelJob(job: Job) {
-        if (null != job && job.isActive && !job.isCancelled && !job.isCompleted) {
-            job.cancel()
         }
     }
 
@@ -129,35 +134,6 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle {
                 e.message?.let { App.getApp().showToast("message: ${it}") }
             }
         }
-    }
-
-    override fun onAny(owner: LifecycleOwner, event: Lifecycle.Event) {
-        this.lifcycleOwner = owner
-    }
-
-    override fun onCreate() {
-        Log.d(TAG, "onCreate")
-    }
-
-    override fun onStart() {
-        Log.d(TAG, "onStart")
-
-    }
-
-    override fun onResume() {
-        Log.d(TAG, "onResume")
-    }
-
-    override fun onPause() {
-        Log.d(TAG, "onPause")
-    }
-
-    override fun onStop() {
-        Log.d(TAG, "onStop")
-    }
-
-    override fun onDestroy() {
-        Log.d(TAG, "onDestroy")
     }
 
 

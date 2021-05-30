@@ -12,13 +12,16 @@ import com.ori.learnsquare1.common.base.activity.BaseDataBindingVMActivity
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.JsonUtil
 import com.ori.learnsquare1.databinding.ActSharedBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.launch
 
 /**
  * 创建人: zhengpf
  * 修改时间: 2020/7/25 15:52
  * 类说明:
  */
-class SharedActivity : BaseDataBindingVMActivity<ActSharedBinding, SharedViewModel>() {
+class SharedActivity : BaseDataBindingVMActivity<ActSharedBinding, SharedViewModel>(), CoroutineScope by MainScope() {
 
 
     private var adapter: ArticleAdapter? = null
@@ -40,6 +43,8 @@ class SharedActivity : BaseDataBindingVMActivity<ActSharedBinding, SharedViewMod
     override fun init() {
         initUI()
         initData()
+
+
     }
 
 
