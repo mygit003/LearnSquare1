@@ -15,7 +15,7 @@ import com.ori.learnsquare1.common.util.Constant
  * 修改时间: 2020/7/26 9:55
  * 类说明:
  */
-@Database(entities = arrayOf(BrowseHistoryValue::class), version = Constant.DB_VERSION)
+@Database(entities = [BrowseHistoryValue::class], version = Constant.DB_VERSION)
 abstract class DBHelper : RoomDatabase() {
 
     companion object {

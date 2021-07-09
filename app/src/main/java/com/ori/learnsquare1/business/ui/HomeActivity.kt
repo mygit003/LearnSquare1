@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Lifecycle
 import com.google.android.material.animation.AnimationUtils
 import com.ori.learnsquare1.R
-import com.ori.learnsquare1.common.base.activity.BaseActivity
 import com.ori.learnsquare1.common.util.ActivityManage
 import com.ori.learnsquare1.business.ui.discovery.DiscoveryFragment
 import com.ori.learnsquare1.business.ui.home.HomeFragment

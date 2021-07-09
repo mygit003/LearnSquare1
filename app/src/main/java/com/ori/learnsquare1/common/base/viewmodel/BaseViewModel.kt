@@ -34,7 +34,7 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle {
     private lateinit var lifcycleOwner: LifecycleOwner
 
     val loadingStatus = MutableLiveData<Boolean>()
-    protected val reloadStatus = MutableLiveData<Boolean>()
+    val reloadStatus = MutableLiveData<Boolean>()
 
     protected val userRepository by lazy { UserRepository() }
 

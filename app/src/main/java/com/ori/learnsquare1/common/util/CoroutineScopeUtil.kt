@@ -50,7 +50,7 @@ class CoroutineScopeUtil private constructor() {
 
     fun cancel() {
         if (::coroutineScope.isInitialized) {
-            if (null != coroutineScope && coroutineScope.isActive) {
+            if (coroutineScope.isActive) {
                 coroutineScope.cancel()
             }
         }

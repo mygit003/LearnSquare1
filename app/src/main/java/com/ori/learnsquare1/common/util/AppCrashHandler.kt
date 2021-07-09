@@ -156,7 +156,8 @@ class AppCrashHandler private constructor() : Thread.UncaughtExceptionHandler {
             val time = format.format(Date())
             val fileName = "crash-$time-$timestamp.log"
             if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
-                val path = Environment.getExternalStorageDirectory().absolutePath + "/crash/"
+                // Environment.getExternalStorageDirectory().absolutePath
+                val path = mContext?.getExternalFilesDir("")!!.absolutePath + "/crash/"
                 val dir = File(path)
                 if (!dir.exists()) {
                     dir.mkdirs()
