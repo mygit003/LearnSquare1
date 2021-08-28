@@ -47,15 +47,16 @@
 
 
     <FrameLayout
+        android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="53dp">
 
-        <WebView
-            android:id="@+id/wv_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never" />
+<!--        <WebView-->
+<!--            android:id="@+id/wv_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:overScrollMode="never" />-->
 
         <com.ori.learnsquare1.common.ui.LoadingTipView
             android:id="@+id/ltv_loading"

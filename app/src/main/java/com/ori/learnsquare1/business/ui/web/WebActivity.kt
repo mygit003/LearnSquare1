@@ -1,5 +1,6 @@
 package com.ori.learnsquare1.business.ui.web
 
+import android.os.Build
 import android.text.Html
 import android.util.Log
 import android.view.KeyEvent
@@ -26,6 +27,8 @@ class WebActivity : BaseViewBindingVMActivity<ActWebBinding, WebViewModel>() {
     private var webTitle: String = ""
     private var datasBean: ArticleValue.DatasBean? = null
     private var userValue: UserValue? = null
+
+    private var mWebView: WebView? = null
 
     override fun setRootView(): Int {
         return R.layout.act_web
@@ -58,39 +61,65 @@ class WebActivity : BaseViewBindingVMActivity<ActWebBinding, WebViewModel>() {
 
 
     private fun initWebView() {
-        val setting: WebSettings = viewBinding.wvView.settings
+        if (null == mWebView) {
+            mWebView = WebView(applicationContext)
+        }
+        var setting: WebSettings = mWebView?.settings!!
         setting.javaScriptEnabled = true
         setting.cacheMode = WebSettings.LOAD_NO_CACHE
 
         //自适应屏幕
-        viewBinding.wvView.settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
-        viewBinding.wvView.settings.loadWithOverviewMode = true
+        setting.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN
+        setting.loadWithOverviewMode = true
+
+        setting.cacheMode = WebSettings.LOAD_NO_CACHE //关闭webview缓存
+        setting.allowFileAccess = true  //设置可以访问文件
+        setting.allowUniversalAccessFromFileURLs = true //
+        setting.allowFileAccessFromFileURLs = true
+        setting.defaultTextEncodingName = "UTF-8" //编码格式
+
+        // 5.1以上默认禁止https和http混用，以下方式为开启
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            setting.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+        }
+        setting.blockNetworkImage = false
 
 
         //如果不设置WebViewClient，请求会跳转系统浏览器
-        viewBinding.wvView.webViewClient = object : WebViewClient() {
+        mWebView?.webViewClient = object : WebViewClient() {
 
-            override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
                 //返回false，意味着请求过程里，不管有多少次的跳转请求（即新的请求地址）
                 //均交给webView自己处理，这也是此方法的默认处理
                 return false
             }
         }
         viewBinding.ltvLoading.loading()
-        viewBinding.wvView.loadUrl(webUrl)
-        viewBinding.wvView.webChromeClient = object : WebChromeClient() {
+        mWebView?.loadUrl(webUrl)
+        mWebView?.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)
-                if (newProgress == 100) viewBinding.ltvLoading.dismiss()
+                if (newProgress == 100) {
+                    if (null != viewBinding) {
+                        viewBinding.ltvLoading.dismiss()
+                    }
+                }
             }
         }
+
+        mWebView?.requestDisallowInterceptTouchEvent(true)
+
+        viewBinding.flContent.addView(mWebView, 0)
     }
 
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK && viewBinding.wvView.canGoBack()) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && mWebView!!.canGoBack()) {
             //返回上个页面
-            viewBinding.wvView.goBack()
+            mWebView?.goBack()
             return true
         }
         return super.onKeyDown(keyCode, event)
@@ -106,7 +135,7 @@ class WebActivity : BaseViewBindingVMActivity<ActWebBinding, WebViewModel>() {
                 articleChapter = it.superChapterName
                 articleLink = it.link
                 articleLinkPic = it.envelopePic
-                articleCollect = if (it.collect ) 1 else 0
+                articleCollect = if (it.collect) 1 else 0
                 articlePublishTime = it.niceDate
                 browseTime = DateUtil.getCurTime()
                 //保存数据
@@ -117,5 +146,30 @@ class WebActivity : BaseViewBindingVMActivity<ActWebBinding, WebViewModel>() {
 
     override fun setViewModelClass(): Class<WebViewModel> {
         return WebViewModel::class.java
+    }
+
+
+    override fun onDestroy() {
+        release()
+        super.onDestroy()
+
+    }
+
+    private fun release() {
+        viewBinding.flContent.removeView(mWebView)
+        mWebView?.apply {
+            loadUrl("about:blank")
+            stopLoading()
+            settings.javaScriptEnabled = false
+            clearHistory()
+            clearCache(true)
+            clearView()
+            freeMemory()
+            pauseTimers()
+            removeAllViewsInLayout()
+            removeAllViews()
+            destroy()
+        }
+        mWebView = null
     }
 }
