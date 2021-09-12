@@ -2,12 +2,12 @@ package com.ori.learnsquare1.business.dialog
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.Gravity
-import android.view.ViewGroup
-import android.view.Window
-import android.view.WindowManager
+import android.view.*
 import android.widget.Toast
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.entity.BusEvent
@@ -131,7 +131,18 @@ class LoginDialog(val mContext: Context) : Dialog(mContext, R.style.CustomDialog
         params.width = ViewGroup.LayoutParams.MATCH_PARENT
         params.height = ViewGroup.LayoutParams.MATCH_PARENT
         params.gravity = Gravity.CENTER
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            //9.0 将内空延伸到刘海屏区域
+            params.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES;
+        }
+
         window!!.setAttributes(params)
 
+        //将内容延伸到状态栏
+        window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        window!!.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
+        window!!.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window!!.statusBarColor = Color.TRANSPARENT
+        //window!!.navigationBarColor = Color.TRANSPARENT
     }
 }
