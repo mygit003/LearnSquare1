@@ -2,7 +2,6 @@ package com.ori.learnsquare1.business.ui.home.hot
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
@@ -39,9 +38,9 @@ class HotFragment : BaseViewBindingVMFragment<FrgHotBinding, HotViewModel>() {
             adapter?.setNewData(articleList)
 
             if (hasNextPage) {
-                adapter?.loadMoreComplete()
+                adapter?.loadMoreModule?.loadMoreComplete()
             }else {
-                adapter?.loadMoreEnd()
+                adapter?.loadMoreModule?.loadMoreEnd()
             }
         })
 
@@ -82,12 +81,11 @@ class HotFragment : BaseViewBindingVMFragment<FrgHotBinding, HotViewModel>() {
         }
 
         adapter?.run {
-            setEnableLoadMore(true)
-            setOnLoadMoreListener(BaseQuickAdapter.RequestLoadMoreListener {
+            loadMoreModule.isEnableLoadMore = true
+            loadMoreModule.setOnLoadMoreListener {
                 pageIndex++
                 viewModel.getArticleList(pageIndex)
-
-            }, viewBinding.rvList)
+            }
 
             setOnItemChildClickListener { adapter, view, position ->
                 when(view.id) {

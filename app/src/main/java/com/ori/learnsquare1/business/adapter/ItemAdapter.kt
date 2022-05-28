@@ -1,7 +1,9 @@
 package com.ori.learnsquare1.business.adapter
 
+import android.widget.CheckedTextView
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.module.LoadMoreModule
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.ori.learnsquare1.business.entity.TabValue
 import com.ori.learnsquare1.R
 
@@ -11,12 +13,13 @@ import com.ori.learnsquare1.R
  * 类说明:
  */
 class ItemAdapter(layoutId: Int, tabList: MutableList<TabValue>) :
-    BaseQuickAdapter<TabValue, BaseViewHolder>(layoutId, tabList) {
+    BaseQuickAdapter<TabValue, BaseViewHolder>(layoutId, tabList), LoadMoreModule {
 
-    override fun convert(holder: BaseViewHolder, item: TabValue?) {
+    override fun convert(holder: BaseViewHolder, item: TabValue) {
         item?.let {
-            holder.setText(R.id.tv_item_title, it.name)
-            holder.setChecked(R.id.tv_item_title, it.checked)
+            val ctv: CheckedTextView = holder.getView<CheckedTextView>(R.id.tv_item_title);
+            ctv.text = it.name
+            ctv.isChecked = it.checked
         }
     }
 }

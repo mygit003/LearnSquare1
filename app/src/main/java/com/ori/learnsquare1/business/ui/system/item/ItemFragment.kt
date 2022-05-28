@@ -3,7 +3,6 @@ package com.ori.learnsquare1.business.ui.system.item
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.business.entity.SystemValue
 import com.ori.learnsquare1.business.entity.TabValue
@@ -11,7 +10,6 @@ import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
 import com.ori.learnsquare1.business.adapter.ItemAdapter
 import com.ori.learnsquare1.business.ui.web.WebActivity
-import com.ori.learnsquare1.common.base.fragment.BaseVMFragment
 import com.ori.learnsquare1.common.base.fragment.BaseViewBindingVMFragment
 import com.ori.learnsquare1.common.util.Constant
 import com.ori.learnsquare1.common.util.JsonUtil
@@ -66,9 +64,9 @@ class ItemFragment : BaseViewBindingVMFragment<FrgItemBinding, ItemViewModel>() 
                 }
 
                 if (hasNextPage) {
-                    articleAdapter?.loadMoreComplete()
+                    articleAdapter?.loadMoreModule?.loadMoreComplete()
                 }else {
-                    articleAdapter?.loadMoreEnd()
+                    articleAdapter?.loadMoreModule?.loadMoreEnd()
                 }
             })
 
@@ -152,7 +150,7 @@ class ItemFragment : BaseViewBindingVMFragment<FrgItemBinding, ItemViewModel>() 
         articleAdapter = ArticleAdapter(articles)
 
         articleAdapter?.run {
-            setEnableLoadMore(true)
+            loadMoreModule.isEnableLoadMore = true
             setOnItemChildClickListener { adapter, view, position ->
                 when(view.id) {
                     R.id.iv_collect -> {
@@ -182,14 +180,14 @@ class ItemFragment : BaseViewBindingVMFragment<FrgItemBinding, ItemViewModel>() 
                 toActivity(WebActivity::class.java, bundle)
             }
 
-
-            setOnLoadMoreListener(BaseQuickAdapter.RequestLoadMoreListener {
+            loadMoreModule.setOnLoadMoreListener {
                 if (hasNextPage) {
                     Log.w(TAG, "onRefresh")
                     pageIndex++
                     viewModel.getSystemArticle(pageIndex, curCateId)
                 }
-            }, viewBinding.rvList)
+            }
+
         }
 //        if (null == articleAdapter) {
 //

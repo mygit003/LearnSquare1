@@ -2,7 +2,6 @@ package com.ori.learnsquare1.business.ui.collect
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
@@ -102,16 +101,13 @@ class CollectActivity : BaseDataBindingVMActivity<ActCollectBinding, CollectView
             adapter = BindItemAdapter.bindArticleList(viewDataBinding.rvList, articles)
 
             adapter?.apply {
-                setOnLoadMoreListener(object : BaseQuickAdapter.RequestLoadMoreListener{
-                    override fun onLoadMoreRequested() {
-                        if (hasNextPage) {
-                            pageIndex++
-                            viewModel.getCollectList(pageIndex)
-                        }
-
+                loadMoreModule.isEnableLoadMore = true
+                loadMoreModule.setOnLoadMoreListener {
+                    if (hasNextPage) {
+                        pageIndex++
+                        viewModel.getCollectList(pageIndex)
                     }
-
-                }, viewDataBinding.rvList)
+                }
 
                 setOnItemClickListener { adapter, view, position ->
                     var datasBean = articles.get(position)
@@ -144,9 +140,9 @@ class CollectActivity : BaseDataBindingVMActivity<ActCollectBinding, CollectView
         }
 
         if (hasNextPage) {
-            adapter?.loadMoreComplete()
+            adapter?.loadMoreModule?.loadMoreComplete()
         }else {
-            adapter?.loadMoreEnd()
+            adapter?.loadMoreModule?.loadMoreEnd()
         }
     }
 

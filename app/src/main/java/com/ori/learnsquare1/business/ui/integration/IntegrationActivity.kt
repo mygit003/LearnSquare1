@@ -84,15 +84,15 @@ class IntegrationActivity : BaseDataBindingVMActivity<ActIntegrationBinding, Int
                         recordList.addAll(it)
                         mAdapter?.setNewData(recordList)
                         if (it.size < pageSize) {
-                            mAdapter?.loadMoreEnd()
+                            mAdapter?.loadMoreModule?.loadMoreEnd()
                             hasNextPage = false
                         }else {
-                            mAdapter?.loadMoreComplete()
+                            mAdapter?.loadMoreModule?.loadMoreComplete()
                             hasNextPage = true
                         }
                     }else {
                         hasNextPage = false
-                        mAdapter?.loadMoreEnd()
+                        mAdapter?.loadMoreModule?.loadMoreEnd()
                     }
                 }
             })
@@ -125,15 +125,15 @@ class IntegrationActivity : BaseDataBindingVMActivity<ActIntegrationBinding, Int
 
             viewDataBinding.rvList.adapter = mAdapter
 
-            mAdapter?.setOnLoadMoreListener(object : BaseQuickAdapter.RequestLoadMoreListener{
-                override fun onLoadMoreRequested() {
+            mAdapter?.apply{
+                loadMoreModule.isEnableLoadMore = true
+                loadMoreModule.setOnLoadMoreListener {
                     if (hasNextPage) {
                         pageIndex++
                         viewModel.getIntegrationRecord(pageIndex)
                     }
                 }
-
-            }, viewDataBinding.rvList)
+            }
         }
     }
 }

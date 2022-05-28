@@ -2,7 +2,8 @@ package com.ori.learnsquare1.business.adapter
 
 import android.text.TextUtils
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.module.LoadMoreModule
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.common.util.Constant
@@ -14,15 +15,16 @@ import com.ori.learnsquare1.common.util.ImageUtil
  * 类说明:
  */
 class ArticleAdapter(list: MutableList<ArticleValue.DatasBean>) :
-    BaseMultiItemQuickAdapter<ArticleValue.DatasBean, BaseViewHolder>(list) {
+    BaseMultiItemQuickAdapter<ArticleValue.DatasBean, BaseViewHolder>(list), LoadMoreModule {
 
     init {
         addItemType(Constant.ITEM_ARTICLE_NO_PIC, R.layout.article_item_no_pic)
         addItemType(Constant.ITEM_ARTICLE_WITH_PIC, R.layout.article_item_with_pic)
+        addChildClickViewIds(R.id.iv_collect)
     }
 
 
-    override fun convert(holder: BaseViewHolder, item: ArticleValue.DatasBean?) {
+    override fun convert(holder: BaseViewHolder, item: ArticleValue.DatasBean) {
         when(holder.itemViewType) {
             //不带图片
             Constant.ITEM_ARTICLE_NO_PIC -> {
@@ -57,6 +59,5 @@ class ArticleAdapter(list: MutableList<ArticleValue.DatasBean>) :
                 }
             }
         }
-        holder.addOnClickListener(R.id.iv_collect)
     }
 }

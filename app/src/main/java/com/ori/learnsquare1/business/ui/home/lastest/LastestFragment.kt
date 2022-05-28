@@ -2,7 +2,6 @@ package com.ori.learnsquare1.business.ui.home.lastest
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
@@ -45,9 +44,9 @@ class LastestFragment : BaseViewBindingVMFragment<FrgLastestBinding, LastestView
             adapter?.setNewData(articleList)
 
             if (hasNextPage) {
-                adapter?.loadMoreComplete()
+                adapter?.loadMoreModule?.loadMoreComplete()
             }else {
-                adapter?.loadMoreEnd()
+                adapter?.loadMoreModule?.loadMoreEnd()
             }
         })
 
@@ -95,12 +94,11 @@ class LastestFragment : BaseViewBindingVMFragment<FrgLastestBinding, LastestView
         }
 
         adapter?.run {
-            setEnableLoadMore(true)
-            setOnLoadMoreListener(BaseQuickAdapter.RequestLoadMoreListener {
+            loadMoreModule.isEnableLoadMore = true
+            loadMoreModule.setOnLoadMoreListener {
                 pageIndex++
                 viewModel.getLastestArticleList(pageIndex)
-
-            }, viewBinding.rvList)
+            }
 
             setOnItemChildClickListener { adapter, view, position ->
                 when (view.id) {

@@ -3,7 +3,6 @@ package com.ori.learnsquare1.business.ui.home.project
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.business.entity.TabValue
 import com.ori.learnsquare1.R
@@ -72,9 +71,9 @@ class ProjectFragment : BaseViewBindingVMFragment<FrgProjectBinding, ProjectView
             }
 
             if (hasNextPage) {
-                articleAdapter?.loadMoreComplete()
+                articleAdapter?.loadMoreModule?.loadMoreComplete()
             }else {
-                articleAdapter?.loadMoreEnd()
+                articleAdapter?.loadMoreModule?.loadMoreEnd()
             }
 
         })
@@ -152,14 +151,14 @@ class ProjectFragment : BaseViewBindingVMFragment<FrgProjectBinding, ProjectView
         }
 
         articleAdapter?.run {
-            setOnLoadMoreListener(BaseQuickAdapter.RequestLoadMoreListener {
+            loadMoreModule.isEnableLoadMore = true
+            loadMoreModule.setOnLoadMoreListener {
                 if (hasNextPage) {
                     Log.w(TAG, "onRefresh")
                     pageIndex++
                     viewModel.getProjectArticlesList(pageIndex, curCateId)
                 }
-
-            }, viewBinding.rvList)
+            }
 
             setOnItemChildClickListener { adapter, view, position ->
                 when (view.id) {

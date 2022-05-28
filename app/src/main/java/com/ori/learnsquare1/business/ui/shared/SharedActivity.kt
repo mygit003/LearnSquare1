@@ -2,7 +2,6 @@ package com.ori.learnsquare1.business.ui.shared
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
@@ -14,7 +13,6 @@ import com.ori.learnsquare1.common.util.JsonUtil
 import com.ori.learnsquare1.databinding.ActSharedBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
 
 /**
  * 创建人: zhengpf
@@ -109,15 +107,13 @@ class SharedActivity : BaseDataBindingVMActivity<ActSharedBinding, SharedViewMod
             adapter = BindItemAdapter.bindArticleList(viewDataBinding.rvList, articles)
 
             adapter?.apply {
-                setOnLoadMoreListener(object : BaseQuickAdapter.RequestLoadMoreListener{
-                    override fun onLoadMoreRequested() {
-                        if (hasNextPage) {
-                            pageIndex++
-                            viewModel.getMyArticles(pageIndex)
-                        }
+                loadMoreModule.isEnableLoadMore = true
+                loadMoreModule.setOnLoadMoreListener {
+                    if (hasNextPage) {
+                        pageIndex++
+                        viewModel.getMyArticles(pageIndex)
                     }
-
-                }, viewDataBinding.rvList)
+                }
 
                 setOnItemClickListener { adapter, view, position ->
                     var datasBean = articles.get(position)
@@ -150,9 +146,9 @@ class SharedActivity : BaseDataBindingVMActivity<ActSharedBinding, SharedViewMod
         }
 
         if (hasNextPage) {
-            adapter?.loadMoreComplete()
+            adapter?.loadMoreModule?.loadMoreComplete()
         }else {
-            adapter?.loadMoreEnd()
+            adapter?.loadMoreModule?.loadMoreEnd()
         }
     }
 }

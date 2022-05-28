@@ -1,7 +1,8 @@
 package com.ori.learnsquare1.business.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.module.LoadMoreModule
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.ori.learnsquare1.business.entity.IntegrationRecordValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.common.ext.toDateTime
@@ -12,9 +13,9 @@ import com.ori.learnsquare1.common.ext.toDateTime
  * 类说明:
  */
 class IntegrationRecordAdapter(list: MutableList<IntegrationRecordValue>) :
-    BaseQuickAdapter<IntegrationRecordValue, BaseViewHolder>(R.layout.item_integration, list) {
+    BaseQuickAdapter<IntegrationRecordValue, BaseViewHolder>(R.layout.item_integration, list), LoadMoreModule {
 
-    override fun convert(helper: BaseViewHolder, item: IntegrationRecordValue?) {
+    override fun convert(helper: BaseViewHolder, item: IntegrationRecordValue) {
         item?.let {
             helper.setText(R.id.tv_reason, it.reason)
             helper.setText(R.id.tv_date, it.date.toDateTime("YYYY-MM-dd HH:mm:ss"))

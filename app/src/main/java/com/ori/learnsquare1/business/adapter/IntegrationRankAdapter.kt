@@ -1,7 +1,8 @@
 package com.ori.learnsquare1.business.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.module.LoadMoreModule
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.ori.learnsquare1.business.entity.RankValue
 import com.ori.learnsquare1.R
 
@@ -11,9 +12,9 @@ import com.ori.learnsquare1.R
  * 类说明:
  */
 class IntegrationRankAdapter(list: MutableList<RankValue>) :
-    BaseQuickAdapter<RankValue, BaseViewHolder>(R.layout.item_rank, list) {
+    BaseQuickAdapter<RankValue, BaseViewHolder>(R.layout.item_rank, list), LoadMoreModule {
 
-    override fun convert(helper: BaseViewHolder, item: RankValue?) {
+    override fun convert(helper: BaseViewHolder, item: RankValue) {
         item?.let {
             helper.setText(R.id.tv_rank, "${helper.adapterPosition + 1}")
             helper.setText(R.id.tv_rank_user_name, it.username)

@@ -1,7 +1,6 @@
 package com.ori.learnsquare1.business.ui.rank
 
 import androidx.lifecycle.Observer
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare1.business.entity.RankValue
 import com.ori.learnsquare1.business.entity.UserAccountValue
 import com.ori.learnsquare1.R
@@ -89,33 +88,21 @@ class RankActivity : BaseDataBindingVMActivity<ActRankBinding, RankViewModel>() 
         if (null == adapter) {
             adapter = BindItemAdapter.bindingList(viewDataBinding.rvList, recordList)
 
-            adapter?.setOnLoadMoreListener(object : BaseQuickAdapter.RequestLoadMoreListener {
-                override fun onLoadMoreRequested() {
+            adapter?.apply {
+                loadMoreModule.isEnableLoadMore = true
+                loadMoreModule.setOnLoadMoreListener {
                     if (hasNextPage) {
                         pageIndex++
                         viewModel.getRankList(pageIndex)
                     }
                 }
-
-            }, viewDataBinding.rvList)
-
-            adapter?.apply {
-                setOnLoadMoreListener(object : BaseQuickAdapter.RequestLoadMoreListener {
-                    override fun onLoadMoreRequested() {
-                        if (hasNextPage) {
-                            pageIndex++
-                            viewModel.getRankList(pageIndex)
-                        }
-                    }
-
-                }, viewDataBinding.rvList)
             }
         }
 
         if (hasNextPage) {
-            adapter?.loadMoreComplete()
+            adapter?.loadMoreModule?.loadMoreComplete()
         }else {
-            adapter?.loadMoreEnd()
+            adapter?.loadMoreModule?.loadMoreEnd()
         }
     }
 

@@ -719,4 +719,34 @@ public class DateUtil {
         String date = sDateFormat.format(new Date());
         return date;
     }
+
+
+    public static  String getUTCTime() {
+        StringBuffer uBuffer = new StringBuffer();
+
+        // 1取得本地时间
+        Calendar cal = Calendar.getInstance() ;
+        // 2取得时间偏移量
+        int zoneOffset = cal.get(Calendar.ZONE_OFFSET);
+        // 3取得夏令时差
+        int dstOffset = cal.get(Calendar.DST_OFFSET);
+        // 4从本地时间里扣除这些差量，即可以取得UTC时间
+        cal.add(Calendar.MILLISECOND, -(zoneOffset + dstOffset));
+
+        int year = cal.get(Calendar.YEAR);
+
+        int month = cal.get(Calendar.MONTH)+1;
+
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        int hour = cal.get(Calendar.HOUR_OF_DAY);
+
+        int minute = cal.get(Calendar.MINUTE);
+        int second = cal.get(Calendar.SECOND);
+
+        uBuffer.append(year).append("-").append(month).append("-").append(day);
+        uBuffer.append(" ").append(hour).append(":").append(minute).append(":").append(second);
+
+        return uBuffer.toString();
+    }
 }

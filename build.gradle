@@ -30,7 +30,8 @@ allprojects {
         maven{
             //gradle 7以上只支持https,添加以下属性支持http
             //allowInsecureProtocol = true
-            url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+            url 'http://maven.aliyun.com/nexus/content/groups/public/'
+        }
         maven {
             //gradle 7以上只支持https,添加以下属性支持http
             //allowInsecureProtocol = true

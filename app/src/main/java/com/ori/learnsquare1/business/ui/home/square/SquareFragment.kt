@@ -2,7 +2,6 @@ package com.ori.learnsquare1.business.ui.home.square
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.R
 import com.ori.learnsquare1.business.adapter.ArticleAdapter
@@ -43,9 +42,9 @@ class SquareFragment : BaseViewBindingVMFragment<FrgSquareBinding, SquareViewMod
             adapter?.setNewData(articleList)
 
             if (hasNextPage) {
-                adapter?.loadMoreComplete()
+                adapter?.loadMoreModule?.loadMoreComplete()
             }else {
-                adapter?.loadMoreEnd()
+                adapter?.loadMoreModule?.loadMoreEnd()
             }
         })
 
@@ -93,12 +92,11 @@ class SquareFragment : BaseViewBindingVMFragment<FrgSquareBinding, SquareViewMod
         }
 
         adapter?.run {
-            setEnableLoadMore(true)
-            setOnLoadMoreListener(BaseQuickAdapter.RequestLoadMoreListener {
+            loadMoreModule.isEnableLoadMore = true
+            loadMoreModule.setOnLoadMoreListener {
                 pageIndex++
                 viewModel.getSquareArticlesList(pageIndex)
-
-            }, viewBinding.rvList)
+            }
 
             setOnItemChildClickListener { adapter, view, position ->
                 when (view.id) {

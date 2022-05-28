@@ -3,7 +3,6 @@ package com.ori.learnsquare1.business.ui.history
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.ori.learnsquare1.business.entity.ArticleValue
 import com.ori.learnsquare1.business.entity.UserValue
 import com.ori.learnsquare1.R
@@ -142,15 +141,13 @@ class HistoryActivity : BaseDataBindingVMActivity<ActHistoryBinding, HistoryView
             adapter = BindItemAdapter.bindArticleList(viewDataBinding.rvList, articles)
 
             adapter?.apply {
-                setOnLoadMoreListener(object : BaseQuickAdapter.RequestLoadMoreListener{
-                    override fun onLoadMoreRequested() {
-                        if (hasNextPage) {
-                            pageIndex++
-                            viewModel.getHistoryList(pageSize, pageIndex)
-                        }
+                loadMoreModule.isEnableLoadMore = true
+                loadMoreModule.setOnLoadMoreListener {
+                    if (hasNextPage) {
+                        pageIndex++
+                        viewModel.getHistoryList(pageSize, pageIndex)
                     }
-
-                }, viewDataBinding.rvList)
+                }
 
                 setOnItemClickListener { adapter, view, position ->
                     var datasBean = articles.get(position)
@@ -195,9 +192,9 @@ class HistoryActivity : BaseDataBindingVMActivity<ActHistoryBinding, HistoryView
         }
 
         if (hasNextPage) {
-            adapter?.loadMoreComplete()
+            adapter?.loadMoreModule?.loadMoreComplete()
         }else {
-            adapter?.loadMoreEnd()
+            adapter?.loadMoreModule?.loadMoreEnd()
         }
     }
 
