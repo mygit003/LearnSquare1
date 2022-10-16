@@ -14,7 +14,7 @@ class RankViewModel : BaseViewModel() {
 
     private val mRepository by lazy { RankRepository() }
 
-    var rankList = MutableLiveData<MutableList<RankValue>>()
+    var rankList = MutableLiveData<MutableList<RankValue>?>()
 
 
     fun getRankList(pageIndex: Int) {
@@ -25,7 +25,7 @@ class RankViewModel : BaseViewModel() {
 
             },
             error = {
-
+                rankList.value = null
             }
         )
     }

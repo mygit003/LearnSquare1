@@ -1,20 +1,20 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.5.10'
+    ext.kotlin_version = '1.7.10'
     repositories {
         google()
         mavenCentral()
         //jcenter()
         maven{
             //gradle 7以上只支持https,添加以下属性支持http
-            //allowInsecureProtocol = true
+            allowInsecureProtocol = true
             url 'http://maven.aliyun.com/nexus/content/groups/public/'
         }
         
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
+        classpath 'com.android.tools.build:gradle:7.3.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
         // NOTE: Do not place your application dependencies here; they belong
@@ -29,12 +29,12 @@ allprojects {
         //jcenter()
         maven{
             //gradle 7以上只支持https,添加以下属性支持http
-            //allowInsecureProtocol = true
+            allowInsecureProtocol = true
             url 'http://maven.aliyun.com/nexus/content/groups/public/'
         }
         maven {
             //gradle 7以上只支持https,添加以下属性支持http
-            //allowInsecureProtocol = true
+            allowInsecureProtocol = true
             url "https://jitpack.io"
         }
     }

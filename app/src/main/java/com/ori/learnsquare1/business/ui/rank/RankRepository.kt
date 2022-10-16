@@ -9,5 +9,5 @@ import com.ori.learnsquare1.common.base.http.HttpUtils
  */
 class RankRepository {
 
-    suspend fun getRankList(pageIndex: Int) = HttpUtils.getApiService().getMyRank(pageIndex).data?.datas
+    suspend fun getRankList(pageIndex: Int) = HttpUtils.getApiService().getMyRank(pageIndex).getResult()?.datas
 }

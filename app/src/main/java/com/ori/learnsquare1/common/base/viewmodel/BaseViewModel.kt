@@ -82,7 +82,7 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle {
                     else -> {
                         // 其他错误
                         e.let {
-                            //App.getApp().showToast("code: ${it.code()}, message: ${it.message()}")
+                            App.getApp().showToast("code: ${it.code()}, message: ${it.message()}")
                         }
                     }
                 }
@@ -96,7 +96,7 @@ abstract class BaseViewModel : ViewModel(), ViewModelLifecycle {
                     else -> {
                         // 其他错误
                         e.let {
-                            //App.getApp().showToast("code: ${it.code}, message: ${it.message}")
+                            App.getApp().showToast("code: ${it.code}, message: ${it.message}")
                         }
                     }
                 }
