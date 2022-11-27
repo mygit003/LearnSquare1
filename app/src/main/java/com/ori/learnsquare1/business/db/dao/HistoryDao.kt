@@ -13,20 +13,20 @@ interface HistoryDao {
 
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE, entity = BrowseHistoryValue::class)
-    suspend fun insert(history: BrowseHistoryValue) : Long
+    fun insert(history: BrowseHistoryValue) : Long
 
 
     @Query("SELECT * FROM browse_history ORDER BY browse_time DESC LIMIT :pageSize OFFSET (:pageSize * (:pageIndex - 1))")
-    suspend fun queryHistory(pageSize: Int, pageIndex: Int) : MutableList<BrowseHistoryValue>
+    fun queryHistory(pageSize: Int, pageIndex: Int) : MutableList<BrowseHistoryValue>
 
     @Update
-    suspend fun updateHistory(history: BrowseHistoryValue) : Int
+    fun updateHistory(history: BrowseHistoryValue) : Int
 
     @Transaction
     @Query("DELETE FROM browse_history WHERE _id = :id")
-    suspend fun delete(id: Int) : Int
+    fun delete(id: Int) : Int
 
     @Transaction
     @Query("DELETE FROM browse_history")
-    suspend fun clear() : Int
+    fun clear() : Int
 }
